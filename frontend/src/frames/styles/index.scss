@@ -1,0 +1,6 @@
+// 1. UIKit rules (this also imports various scss variables)
+@import 'src/frames/styles/uikit.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

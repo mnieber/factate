@@ -1,0 +1,24 @@
+#
+# React
+#
+
+create-bundle:
+	rm -rf /app/bundle/*
+	yarn build
+	cp -rf ./build/* /app/bundle
+
+install:
+	yarn install
+
+run-dev-server:
+	PORT=3001 yarn start
+
+#
+# Stack
+#
+
+init-prod: \
+	install
+
+start-prod:
+	yarn global add serve

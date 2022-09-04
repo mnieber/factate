@@ -1,0 +1,8 @@
+#
+# Stack
+#
+
+init-prod: \
+	install
+
+start-prod:

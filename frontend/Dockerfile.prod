@@ -1,0 +1,14 @@
+FROM node:14-alpine
+
+# install pkg dependencies
+RUN apk update && apk add \
+    make
+
+# install dev pkg dependencies
+RUN apk update && apk add \
+    fish \
+    nano
+
+WORKDIR /app/src
+
+CMD make --file=Makefile.prod start-prod

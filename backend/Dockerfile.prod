@@ -1,0 +1,18 @@
+FROM python:3
+
+# install pkg dependencies
+RUN apt-get update && apt-get install -y \
+    make
+
+# install dev pkg dependencies
+RUN apt-get update && apt-get install -y \
+    fish \
+    nano
+
+# Copy source files
+RUN mkdir -p /app/src
+COPY . /app/src
+
+WORKDIR /app/src
+
+CMD make --file=Makefile.prod start-prod
