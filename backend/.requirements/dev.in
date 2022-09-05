@@ -1,8 +1,4 @@
 -r base.txt
 
-black
-isort
-ipython
-pudb
 pytest
 pytest-html

@@ -1,5 +1,7 @@
 FROM python:3
 
+RUN pip install --upgrade pip
+
 # install pkg dependencies
 RUN apt-get update && apt-get install -y \
     make
@@ -9,5 +11,17 @@ RUN apt-get update && apt-get install -y \
     curl \
     fish \
     nano
+
+# create a python venv that we can easily store inside a docker volume
+RUN python3 -m venv /app/env
+ENV PATH="/app/env/bin:${PATH}"
+
+# install dev pip dependencies
+RUN /app/env/bin/pip install \
+    black \
+    ipython \
+    isort \
+    pip-tools \
+    pudb
 
 WORKDIR /app/src

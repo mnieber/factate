@@ -5,9 +5,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-    image: dofa_backend_dev
+    command: sleep infinity
+    image: factate_backend_dev
     volumes:
       - ./backend:/app/src
+      - backend_venv:/app/env
   frontend:
     build:
       context: ./frontend
@@ -15,8 +17,10 @@ services:
     command: sleep infinity
     environment:
       - CHOKIDAR_USEPOLLING=true
-    image: dofa_frontend_dev
+    image: factate_frontend_dev
     ports:
       - 3000
     volumes:
       - ./frontend:/app/src
+volumes:
+  backend_venv: {}

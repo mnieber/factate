@@ -4,7 +4,7 @@ from dodo_commands import Dodo
 
 
 def _args():  # noqa
-    parser = ArgumentParser(description=("Initialize the Factation project."))
+    parser = ArgumentParser(description=("Initialize the factate project."))
     args = Dodo.parse_args(parser)
     return args
 
