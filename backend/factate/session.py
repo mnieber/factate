@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 
-from factate.parser.glossary import Glossary
+from factate.data.glossary import Glossary
+from factate.data.page import Page
 from factate.settings import load_settings
 from factate.utils.inflect import install_plural
 
@@ -15,6 +16,7 @@ class Session:
         self.settings = None
         self.output_dir = Path(output_dir)
         self.glossary = Glossary()
+        self.page = Page()
 
     def load_settings(self):
         settings_fn = Path(self.index_file) / self.settings_fn

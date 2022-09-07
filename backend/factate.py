@@ -4,8 +4,9 @@ import sys
 # import traceback
 from argparse import ArgumentParser
 
-from factate.parser.block_collector import get_blocks
+from factate.parser.parser import parse_markdown
 from factate.session import Session, set_session
+from factate.writer.write_output import write_output
 
 
 def create_parser():
@@ -20,7 +21,8 @@ def create_parser():
 def create_pages(index_file, session):
     with open(index_file) as ifs:
         markdown = ifs.read()
-    blocks = get_blocks(markdown)
+    parse_markdown(markdown)
+    write_output()
 
 
 def report(x):

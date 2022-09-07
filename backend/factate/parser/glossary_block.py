@@ -1,7 +1,7 @@
 import re
 
+from factate.data.term import Term
 from factate.parser.block import Block
-from factate.parser.term import Term
 from factate.session import get_session
 
 
@@ -14,9 +14,8 @@ class GlossaryBlock(Block):
     def add_line(self, line):
         super().add_line(line)
 
-        # create regex pattern of a hyphen followed by a name (that is captured) and a colon
-        # for every match
-        for match in self.pattern.finditer(line.text):
+        match = self.pattern.match(line.text)
+        if match:
             # get the name
             name = match.group("name")
             self.glossary.add_term(Term(name))
