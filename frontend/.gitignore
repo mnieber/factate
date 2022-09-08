@@ -20,3 +20,5 @@ yarn-error.log*
 
 cypress/screenshots
 cypress/videos
+
+public/pages.json

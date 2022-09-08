@@ -4,7 +4,7 @@ export const getRouteTable = () => {
   const routeTable = new RouteTable();
 
   routeTable.addRoutes({
-    page: () => '/pages/page',
+    page: () => '/page',
   });
 
   return routeTable;

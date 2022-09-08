@@ -19,7 +19,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
     image: factate_frontend_dev
     ports:
-      - 3000
+      - 3000:3000
     volumes:
       - ./frontend:/app/src
 volumes:

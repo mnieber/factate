@@ -1,9 +1,7 @@
-import { SnippetT } from 'src/api/types/SnippetT';
-
 export type CodeBlockT = {
   id: string;
   filename: string;
-  snippet: SnippetT;
+  code: string;
 };
 
 export type CodeBlockByIdT = { [id: string]: CodeBlockT };

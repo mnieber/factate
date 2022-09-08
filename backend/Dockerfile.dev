@@ -17,7 +17,7 @@ RUN python3 -m venv /app/env
 ENV PATH="/app/env/bin:${PATH}"
 
 # install dev pip dependencies
-RUN /app/env/bin/pip install \
+RUN pip install \
     black \
     ipython \
     isort \

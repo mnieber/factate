@@ -1,9 +1,7 @@
-import { SnippetT } from 'src/api/types/SnippetT';
-
 export type FactT = {
   id: string;
   title: string;
-  snippet: SnippetT;
+  text: string;
 };
 
 export type FactByIdT = { [id: string]: FactT };

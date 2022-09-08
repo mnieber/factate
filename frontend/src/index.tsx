@@ -1,17 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { App } from 'src/app/components';
 import 'src/frames/styles/index.scss';
+import { RoutesProvider } from 'src/routes/components/RoutesProvider';
 
 const strict = false;
 
-ReactDOM.render(
-  strict ? (
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  ) : (
-    <App />
-  ),
-  document.getElementById('root')
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
 );
+
+const body = (
+  <RoutesProvider>
+    <App />
+  </RoutesProvider>
+);
+
+root.render(strict ? <React.StrictMode>{body}</React.StrictMode> : body);
