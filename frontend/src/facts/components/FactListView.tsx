@@ -12,12 +12,12 @@ type PropsT = {
 
 type DefaultPropsT = {
   facts: FactT[];
-  factsRS: string;
+  pagesRS: string;
 };
 
 export const FactListView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
-    const resourceView = props.factsRS === 'loading' ? <div /> : undefined;
+    const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
     const factDivs = R.pipe(

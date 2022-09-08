@@ -30,6 +30,7 @@ export const PageStateProvider = observer(
 
           const snippet: SnippetT | undefined = state.snippets.highlight.item;
           state.facts.highlight.highlightItem(snippet?.facts[0]?.id);
+          state.codeBlocks.highlight.highlightItem(snippet?.codeBlocks[0]?.id);
         })
         .catch((error: Error) => {
           console.error(error);
@@ -42,6 +43,7 @@ export const PageStateProvider = observer(
           pages: () => state.outputs.pagesDisplay,
           pagesHighlight: () => state.pages.highlight,
           page: () => state.pages.highlight.item,
+          pagesRS: () => (state.inputs.pages.length ? 'loaded' : 'loading'),
         },
         {
           snippets: () => state.outputs.snippetsDisplay,

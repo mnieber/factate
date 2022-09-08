@@ -1,3 +1,4 @@
+import { action } from 'mobx';
 import * as R from 'ramda';
 import {
   addCleanUpFunctionToCtr,
@@ -35,7 +36,7 @@ export class PageState {
     highlight: new Highlight(),
   };
 
-  setPages(pages: PageT[]) {
+  @action setPages(pages: PageT[]) {
     this.inputs.pages = pages;
   }
 
@@ -58,10 +59,12 @@ export class PageState {
     const con = createConnector(this);
     const getSnippetById = (id: string) =>
       R.find(hasId(id), this.pages.highlight.item?.snippets ?? []);
+    const getSnippetsFromPage = (page?: PageT) => page?.snippets ?? [];
 
     con['snippets.highlight'].item =
       con['snippets.highlight'].id.tf(getSnippetById);
-    con['outputs'].snippetsDisplay = con['inputs'].snippets;
+    con['outputs'].snippetsDisplay =
+      con['pages.highlight'].item.tf(getSnippetsFromPage);
 
     con.connect();
   }
@@ -83,11 +86,13 @@ export class PageState {
     const con = createConnector(this);
     const getCodeBlockById = (id: string) =>
       R.find(hasId(id), this.snippets.highlight.item?.codeBlocks ?? []);
+    const getCodeBlocksFromSnippet = (snippet?: SnippetT) =>
+      snippet?.codeBlocks ?? [];
 
     con['codeBlocks.highlight'].item =
       con['codeBlocks.highlight'].id.tf(getCodeBlockById);
     con['outputs'].codeBlocksDisplay = con['snippets.highlight'].item.tf(
-      (snippet?: SnippetT) => snippet?.codeBlocks ?? []
+      getCodeBlocksFromSnippet
     );
 
     con.connect();
@@ -102,21 +107,6 @@ export class PageState {
   }
 
   constructor(props: PropsT) {
-    registerCtr({
-      ctr: this,
-      options: { name: 'PageState', members: [] },
-    });
-
-    registerCtr({
-      ctr: this.inputs,
-      options: { name: Inputs.className(), members: [] },
-    });
-
-    registerCtr({
-      ctr: this.outputs,
-      options: { name: Outputs.className(), members: [] },
-    });
-
     registerCtr({
       ctr: this.pages,
       options: { name: 'Pages' },
@@ -155,6 +145,11 @@ export class PageState {
         this._applyCodeBlocksPolicies(props);
         addCleanUpFunctionToCtr(this, () => cleanUpCtr(this.codeBlocks));
       },
+    });
+
+    registerCtr({
+      ctr: this,
+      options: { name: 'PageState', facets: ['inputs', 'outputs'] },
     });
   }
 }

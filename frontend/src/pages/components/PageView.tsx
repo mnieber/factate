@@ -16,19 +16,19 @@ export const PageView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     return (
       <div className={cn('PageView', 'flex flex-col w-full', props.className)}>
-        <div className="PageView__topPanel">
+        <div className="PageView__TopPanel">
           <div>
             <SnippetView />
           </div>
         </div>
         <div className={cn('flex flex-row', props.className)}>
-          <div className="PageView__rightPanel">
+          <div className="PageView__RightPanel">
             <div>
               <TermListView />
             </div>
           </div>
         </div>
-        <div className="PageView__bottomPanel">
+        <div className="PageView__BottomPanel">
           <div>
             <FactListView />
           </div>

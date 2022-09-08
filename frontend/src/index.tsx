@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-if (process.env.NODE_ENV === 'development') {
+if (false && process.env.NODE_ENV === 'development') {
   applyFormatters();
 }
 

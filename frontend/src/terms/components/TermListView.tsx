@@ -12,12 +12,12 @@ type PropsT = {
 
 type DefaultPropsT = {
   terms: TermT[];
-  termsRS: string;
+  pagesRS: string;
 };
 
 export const TermListView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
-    const resourceView = props.termsRS === 'loading' ? <div /> : undefined;
+    const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
     const termDivs = R.pipe(

@@ -14,18 +14,18 @@ def write_output():
             snippet_output = {
                 "id": snippet.id,
                 "title": snippet.title,
-                "code_blocks": {},
+                "codeBlocks": {},
                 "facts": [],
             }
             page_output["snippets"].append(snippet_output)
 
-            for code_block in snippet.code_blocks:
+            for code_block in snippet.codeBlocks:
                 code_block_output = {
                     "id": code_block.id,
                     "filename": code_block.filename,
                     "code": code_block.code,
                 }
-                snippet_output["code_blocks"][code_block.filename] = code_block_output
+                snippet_output["codeBlocks"][code_block.filename] = code_block_output
 
             for fact in snippet.facts:
                 fact_output = {"id": fact.id, "title": fact.title, "text": fact.text}

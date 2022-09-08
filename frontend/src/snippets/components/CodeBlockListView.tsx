@@ -12,12 +12,12 @@ type PropsT = {
 
 type DefaultPropsT = {
   codeBlocks: CodeBlockT[];
-  codeBlocksRS: string;
+  pagesRS: string;
 };
 
 export const CodeBlockListView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
-    const resourceView = props.codeBlocksRS === 'loading' ? <div /> : undefined;
+    const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
     const codeBlockDivs = R.pipe(
