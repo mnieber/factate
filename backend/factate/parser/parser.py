@@ -1,15 +1,7 @@
-import nltk
-
 from factate.data.line import get_create_line
-from factate.parser.block import Block
 from factate.parser.fact_block import FactBlock
 from factate.parser.glossary_block import GlossaryBlock
 from factate.parser.snippet_block import SnippetBlock
-
-try:
-    nltk.sent_tokenize("test")
-except LookupError:
-    nltk.download("punkt")
 
 
 class FormatError(Exception):

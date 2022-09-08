@@ -4,11 +4,11 @@ import {
   cleanUpCtr,
 } from 'react-default-props-context';
 import * as Skandha from 'skandha';
+import { createConnector } from 'skandha';
 import { Highlight } from 'skandha-facets/Highlight';
 import { registerCtr } from 'skandha-mobx';
 import { PageT } from 'src/api/types/PageT';
 import { SnippetT } from 'src/api/types/SnippetT';
-import { createConnector } from 'src/pages/Connector';
 import { Inputs } from 'src/pages/PageState/facets/Inputs';
 import { Outputs } from 'src/pages/PageState/facets/Outputs';
 import { hasId } from 'src/utils/ids';
@@ -20,7 +20,6 @@ export class PageState {
   outputs: Outputs = new Outputs();
 
   pages = {
-    className: () => 'Pages',
     highlight: new Highlight(),
   };
 
@@ -58,7 +57,7 @@ export class PageState {
   _applySnippetsPolicies(props: PropsT) {
     const con = createConnector(this);
     const getSnippetById = (id: string) =>
-      R.find(hasId(id), this.pages.highlight.item?.snippetSet ?? []);
+      R.find(hasId(id), this.pages.highlight.item?.snippets ?? []);
 
     con['snippets.highlight'].item =
       con['snippets.highlight'].id.tf(getSnippetById);
@@ -70,8 +69,8 @@ export class PageState {
   _applyFactsPolicies(props: PropsT) {
     const con = createConnector(this);
     const getFactById = (id: string) =>
-      R.find(hasId(id), this.snippets.highlight.item?.factSet ?? []);
-    const getFactsFromSnippet = (snippet?: SnippetT) => snippet?.factSet ?? [];
+      R.find(hasId(id), this.snippets.highlight.item?.facts ?? []);
+    const getFactsFromSnippet = (snippet?: SnippetT) => snippet?.facts ?? [];
 
     con['facts.highlight'].item = con['facts.highlight'].id.tf(getFactById);
     con['outputs'].factsDisplay =
@@ -83,12 +82,12 @@ export class PageState {
   _applyCodeBlocksPolicies(props: PropsT) {
     const con = createConnector(this);
     const getCodeBlockById = (id: string) =>
-      R.find(hasId(id), this.snippets.highlight.item?.codeBlockSet ?? []);
+      R.find(hasId(id), this.snippets.highlight.item?.codeBlocks ?? []);
 
     con['codeBlocks.highlight'].item =
       con['codeBlocks.highlight'].id.tf(getCodeBlockById);
     con['outputs'].codeBlocksDisplay = con['snippets.highlight'].item.tf(
-      (snippet?: SnippetT) => snippet?.codeBlockSet ?? []
+      (snippet?: SnippetT) => snippet?.codeBlocks ?? []
     );
 
     con.connect();
@@ -105,27 +104,17 @@ export class PageState {
   constructor(props: PropsT) {
     registerCtr({
       ctr: this,
-      options: {
-        name: 'PageState',
-        members: [
-          'inputs',
-          'outputs',
-          'pages',
-          'snippets',
-          'facts',
-          'codeBlocks',
-        ],
-      },
+      options: { name: 'PageState', members: [] },
     });
 
     registerCtr({
       ctr: this.inputs,
-      options: { name: Inputs.className() },
+      options: { name: Inputs.className(), members: [] },
     });
 
     registerCtr({
       ctr: this.outputs,
-      options: { name: Outputs.className() },
+      options: { name: Outputs.className(), members: [] },
     });
 
     registerCtr({

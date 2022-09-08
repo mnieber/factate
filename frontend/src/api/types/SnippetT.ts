@@ -4,8 +4,8 @@ import { FactT } from 'src/api/types/FactT';
 export type SnippetT = {
   id: string;
   title: string;
-  codeBlockSet: CodeBlockT[];
-  factSet: FactT[];
+  codeBlocks: CodeBlockT[];
+  facts: FactT[];
 };
 
 export type SnippetByIdT = { [id: string]: SnippetT };

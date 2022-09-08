@@ -1,6 +1,5 @@
 inflect
 markdown
-nltk
 ruamel.yaml
 ramda
 PyYAML

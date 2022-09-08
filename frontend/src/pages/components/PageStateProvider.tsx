@@ -7,7 +7,9 @@ import {
 } from 'react-default-props-context';
 import { getPages } from 'src/api/queries/getPages';
 import { PageT } from 'src/api/types/PageT';
+import { SnippetT } from 'src/api/types/SnippetT';
 import { PageState } from 'src/pages/PageState';
+import { ObjT } from 'src/utils/types';
 
 type PropsT = React.PropsWithChildren<{}>;
 
@@ -19,8 +21,15 @@ export const PageStateProvider = observer(
 
     React.useEffect(() => {
       getPages()
-        .then((pages: PageT[]) => {
-          state.setPages(pages);
+        .then((pages: ObjT) => {
+          state.setPages(pages.pages);
+          state.pages.highlight.highlightItem(pages.pages[0]?.id);
+
+          const page: PageT | undefined = state.pages.highlight.item;
+          state.snippets.highlight.highlightItem(page?.snippets[0]?.id);
+
+          const snippet: SnippetT | undefined = state.snippets.highlight.item;
+          state.facts.highlight.highlightItem(snippet?.facts[0]?.id);
         })
         .catch((error: Error) => {
           console.error(error);
@@ -48,6 +57,9 @@ export const PageStateProvider = observer(
           facts: () => state.outputs.factsDisplay,
           factsHighlight: () => state.facts.highlight,
           fact: () => state.facts.highlight.item,
+        },
+        {
+          terms: () => [],
         },
       ]);
     };
