@@ -40,23 +40,24 @@ export const PageStateProvider = observer(
     const getDefaultProps = () => {
       return R.mergeAll([
         {
-          pages: () => state.outputs.pagesDisplay,
+          pages: () => state.data.outputs.pagesDisplay,
           pagesHighlight: () => state.pages.highlight,
           page: () => state.pages.highlight.item,
-          pagesRS: () => (state.inputs.pages.length ? 'loaded' : 'loading'),
+          pagesRS: () =>
+            state.data.inputs.pages.length ? 'loaded' : 'loading',
         },
         {
-          snippets: () => state.outputs.snippetsDisplay,
+          snippets: () => state.data.outputs.snippetsDisplay,
           snippetsHighlight: () => state.snippets.highlight,
           snippet: () => state.snippets.highlight.item,
         },
         {
-          codeBlocks: () => state.outputs.codeBlocksDisplay,
+          codeBlocks: () => state.data.outputs.codeBlocksDisplay,
           codeBlocksHighlight: () => state.codeBlocks.highlight,
           codeBlock: () => state.codeBlocks.highlight.item,
         },
         {
-          facts: () => state.outputs.factsDisplay,
+          facts: () => state.data.outputs.factsDisplay,
           factsHighlight: () => state.facts.highlight,
           fact: () => state.facts.highlight.item,
         },
