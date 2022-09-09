@@ -21,8 +21,10 @@ export const SnippetView = observer(
     if (resourceView) return resourceView;
 
     return (
-      <div className={cn('SmippetView', 'flex flex-col', props.className)}>
-        <div className="SnippetView__Title">{props.snippet.title}</div>
+      <div className={cn('SnippetView', 'flex flex-col', props.className)}>
+        <div className={cn('SnippetView__Title', 'mb-[-32px]')}>
+          {'Example: ' + props.snippet.title}
+        </div>
         <CodeBlockListView codeBlocks={props.snippet.codeBlocks} />
         <FactListView facts={props.snippet.facts} />
       </div>

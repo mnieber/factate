@@ -22,15 +22,16 @@ class SnippetBlock(Block):
             if line.text.startswith("```"):
                 if code_block is None:
                     code_block = CodeBlock()
+                    code_block.code += line.text + os.linesep
                 else:
+                    code_block.code += line.text + os.linesep
                     self.snippet.code_blocks.append(code_block)
                     code_block = None
-            else:
-                if code_block:
-                    match = self.pattern.match(line.text)
-                    if match:
-                        code_block.filename = match.group("filename")
-                    else:
-                        code_block.code += line.text + os.linesep
+            elif code_block:
+                match = self.pattern.match(line.text)
+                if match:
+                    code_block.filename = match.group("filename")
+                else:
+                    code_block.code += line.text + os.linesep
 
         get_session().page.snippets.append(self.snippet)

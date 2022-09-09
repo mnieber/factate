@@ -20,7 +20,9 @@ export const PageView = observer(
     if (!props.page) return null;
 
     const snippetViews = props.page.snippets.map((snippet: SnippetT) => {
-      return <SnippetView key={snippet.id} snippet={snippet} />;
+      return (
+        <SnippetView className={cn('p-4')} key={snippet.id} snippet={snippet} />
+      );
     });
 
     return (

@@ -2,4 +2,15 @@
   @apply cursor-pointer;
 
   background-color: #cceeff;
+
+  ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 16px;
+  }
+}
+
+.FactCard__Title {
+  font-weight: bold;
+  text-align: center;
 }

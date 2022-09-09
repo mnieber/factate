@@ -1,1 +1,10 @@
-.SnippetView {}
+.SnippetView {
+    max-width: 1000px;
+}
+
+.SnippetView__Title {
+    @apply text-xl font-bold;
+
+    text-align: right;
+
+}
