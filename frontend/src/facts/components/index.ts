@@ -1,2 +1,2 @@
+export { FactCard } from './FactCard';
 export { FactListView } from './FactListView';
-export { FactListViewItem } from './FactListViewItem';

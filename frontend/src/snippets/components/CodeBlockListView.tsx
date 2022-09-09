@@ -8,10 +8,10 @@ import './CodeBlockListView.scss';
 
 type PropsT = {
   className?: any;
+  codeBlocks: CodeBlockT[];
 };
 
 type DefaultPropsT = {
-  codeBlocks: CodeBlockT[];
   pagesRS: string;
 };
 

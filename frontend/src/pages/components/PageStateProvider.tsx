@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
 import React from 'react';
@@ -6,8 +7,6 @@ import {
   withDefaultProps,
 } from 'react-default-props-context';
 import { getPages } from 'src/api/queries/getPages';
-import { PageT } from 'src/api/types/PageT';
-import { SnippetT } from 'src/api/types/SnippetT';
 import { PageState } from 'src/pages/PageState';
 import { ObjT } from 'src/utils/types';
 
@@ -22,15 +21,8 @@ export const PageStateProvider = observer(
     React.useEffect(() => {
       getPages()
         .then((pages: ObjT) => {
-          state.setPages(pages.pages);
+          runInAction(() => state.setPages(pages.pages));
           state.pages.highlight.highlightItem(pages.pages[0]?.id);
-
-          const page: PageT | undefined = state.pages.highlight.item;
-          state.snippets.highlight.highlightItem(page?.snippets[0]?.id);
-
-          const snippet: SnippetT | undefined = state.snippets.highlight.item;
-          state.facts.highlight.highlightItem(snippet?.facts[0]?.id);
-          state.codeBlocks.highlight.highlightItem(snippet?.codeBlocks[0]?.id);
         })
         .catch((error: Error) => {
           console.error(error);
@@ -45,21 +37,6 @@ export const PageStateProvider = observer(
           page: () => state.pages.highlight.item,
           pagesRS: () =>
             state.data.inputs.pages.length ? 'loaded' : 'loading',
-        },
-        {
-          snippets: () => state.data.outputs.snippetsDisplay,
-          snippetsHighlight: () => state.snippets.highlight,
-          snippet: () => state.snippets.highlight.item,
-        },
-        {
-          codeBlocks: () => state.data.outputs.codeBlocksDisplay,
-          codeBlocksHighlight: () => state.codeBlocks.highlight,
-          codeBlock: () => state.codeBlocks.highlight.item,
-        },
-        {
-          facts: () => state.data.outputs.factsDisplay,
-          factsHighlight: () => state.facts.highlight,
-          fact: () => state.facts.highlight.item,
         },
         {
           terms: () => [],
