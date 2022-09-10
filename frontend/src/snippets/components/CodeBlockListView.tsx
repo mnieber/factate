@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
+import React from 'react';
 import { withDefaultProps } from 'react-default-props-context';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.scss';
@@ -22,34 +23,47 @@ export const CodeBlockListView = observer(
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
+    const [codeBlockId, setCodeBlockId] = React.useState<string>(
+      props.codeBlocks[0].id
+    );
+
     const tabs = R.pipe(
       R.always(props.codeBlocks),
       R.map((codeBlock: CodeBlockT) => {
-        return <Tab key={codeBlock.id}>{codeBlock.filename}</Tab>;
+        return (
+          <Tab key={codeBlock.id} onClick={() => setCodeBlockId(codeBlock.id)}>
+            {codeBlock.filename}
+          </Tab>
+        );
       })
     )();
 
     const tabPanels = R.pipe(
       R.always(props.codeBlocks),
       R.map((codeBlock: CodeBlockT) => {
-        return (
-          <TabPanel key={codeBlock.id}>
-            <CodeBlockCard codeBlock={codeBlock} />
-          </TabPanel>
-        );
+        return <TabPanel key={codeBlock.id}></TabPanel>;
       })
     )();
+
+    const codeBlockCards = props.codeBlocks.map((codeBlock: CodeBlockT) => {
+      return (
+        <CodeBlockCard
+          key={codeBlock.id}
+          codeBlock={codeBlock}
+          className={cn(codeBlock.id === codeBlockId ? 'visible' : 'invisible')}
+        />
+      );
+    });
 
     const noItems = <h2>There are no codeBlocks</h2>;
 
     return (
-      <div
-        className={cn('CodeBlockListView', 'flex flex-col', props.className)}
-      >
+      <div className={cn('CodeBlockListView', props.className)}>
         <Tabs className="CodeBlockListView__Tabs">
           <TabList>{tabs}</TabList>
           {tabPanels}
         </Tabs>
+        {codeBlockCards}
       </div>
     );
   })

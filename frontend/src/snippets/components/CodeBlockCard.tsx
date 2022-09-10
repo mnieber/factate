@@ -17,11 +17,7 @@ export const CodeBlockCard: React.FC<PropsT> = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     return (
       <div
-        className={cn(
-          'CodeBlockCard',
-          'flex flex-col flex-1 mb-2',
-          props.className
-        )}
+        className={cn('CodeBlockCard', 'flex flex-col mb-2', props.className)}
       >
         <ReactMarkdown
           className={cn('CodeBlockCard__Code')}
