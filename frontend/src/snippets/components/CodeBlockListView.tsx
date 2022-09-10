@@ -55,7 +55,7 @@ export const CodeBlockListView = observer(
       );
     });
 
-    const noItems = <h2>There are no codeBlocks</h2>;
+    const noItems = <h2>There are no code blocks</h2>;
 
     return (
       <div className={cn('CodeBlockListView', props.className)}>
@@ -63,6 +63,7 @@ export const CodeBlockListView = observer(
           <TabList>{tabs}</TabList>
           {tabPanels}
         </Tabs>
+        {codeBlockCards.length === 0 && noItems}
         <div className={cn('CodeBlockListView__Body')}>{codeBlockCards}</div>
       </div>
     );
