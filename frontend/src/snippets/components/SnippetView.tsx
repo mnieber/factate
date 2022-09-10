@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { withDefaultProps } from 'react-default-props-context';
 import { SnippetT } from 'src/api/types/SnippetT';
-import { FactListView } from 'src/facts/components';
+import { FactCard } from 'src/facts/components';
 import { CodeBlockListView } from 'src/snippets/components/CodeBlockListView';
 import { cn } from 'src/utils/classnames';
 import './SnippetView.scss';
@@ -26,7 +26,7 @@ export const SnippetView = observer(
           {'Example: ' + props.snippet.title}
         </div>
         <CodeBlockListView codeBlocks={props.snippet.codeBlocks} />
-        <FactListView facts={props.snippet.facts} />
+        <FactCard facts={props.snippet.facts} />
       </div>
     );
   })

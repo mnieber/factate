@@ -10,7 +10,23 @@
   }
 }
 
+.FactCard__Text {
+  > ul {
+    margin-top: 8px;
+  }
+}
+
 .FactCard__Title {
   font-weight: bold;
   text-align: center;
+}
+
+.FactCard__Body {
+    display: grid;
+    grid-template-areas:
+        "content";
+
+    .FactCard__Content {
+        grid-area: content;
+    }
 }

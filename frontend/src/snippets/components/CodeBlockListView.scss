@@ -1,12 +1,7 @@
-.CodeBlockListView {
+.CodeBlockListView__Body {
     display: grid;
     grid-template-areas:
-        "tabs"
         "content";
-
-    .CodeBlockListView__Tabs {
-        grid-area: tabs;
-    }
 
     .CodeBlockCard {
         grid-area: content;

@@ -63,7 +63,7 @@ export const CodeBlockListView = observer(
           <TabList>{tabs}</TabList>
           {tabPanels}
         </Tabs>
-        {codeBlockCards}
+        <div className={cn('CodeBlockListView__Body')}>{codeBlockCards}</div>
       </div>
     );
   })
