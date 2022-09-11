@@ -90,29 +90,24 @@ export const FactCard: React.FC<PropsT> = observer(
           if (e.key === 'ArrowRight') moveForward();
           if (e.ctrlKey && e.key === 'ArrowDown') {
             e.preventDefault();
-            const nextCodeBlock = findNextElm(e.target, '.FactCard', true);
-            scrollIntoView(nextCodeBlock);
-            nextCodeBlock.focus();
+            const nextFactCard = findNextElm(e.target, '.FactCard', true);
+            if (!nextFactCard) return;
+
+            scrollIntoView(nextFactCard);
+            nextFactCard.focus();
           }
           if (e.ctrlKey && e.key === 'ArrowUp') {
             e.preventDefault();
-            let nextCodeBlock = undefined;
-            for (let i = 0; i < 3; i++) {
-              nextCodeBlock = findNextElm(
-                nextCodeBlock ?? e.target,
-                '.FactCard, .CodeBlockListView',
-                false
-              );
-            }
-            if (nextCodeBlock) {
-              scrollIntoView(nextCodeBlock);
-              const nextFact = findNextElm(
-                nextCodeBlock ?? e.target,
-                '.FactCard, .CodeBlockListView',
-                true
-              );
-              nextFact.focus();
-            }
+            const nextFactCard = findNextElm(e.target, '.FactCard', false);
+            if (!nextFactCard) return;
+
+            const nextCodeBlock = findNextElm(
+              nextFactCard,
+              '.FactCard, .CodeBlockListView',
+              false
+            );
+            nextCodeBlock && scrollIntoView(nextCodeBlock);
+            nextFactCard && nextFactCard.focus();
           }
         }}
       >

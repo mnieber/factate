@@ -23,9 +23,7 @@ export function findNextElm(el: any, selectors: string, forward: boolean) {
   });
   var index = list.indexOf(el);
 
-  return forward ?? true
-    ? list[index + 1] ?? list[0]
-    : list[index - 1] ?? list[list.length - 1];
+  return forward ?? true ? list[index + 1] : list[index - 1];
 }
 
 export function handleEnterAsTabToNext(event: any, isPreventDefault?: boolean) {

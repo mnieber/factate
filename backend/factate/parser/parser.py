@@ -60,8 +60,9 @@ def create_block(name, level):
     if stripped_name := _remove_prefix(name, "Snippet"):
         return SnippetBlock(stripped_name, level)
 
-    if stripped_name := _remove_prefix(name, "Fact"):
-        return FactBlock(stripped_name, level)
+    for prefix in ("Fact", "Intro", "Next"):
+        if stripped_name := _remove_prefix(name, prefix):
+            return FactBlock(prefix, stripped_name, level)
 
 
 def parse_markdown(markdown):

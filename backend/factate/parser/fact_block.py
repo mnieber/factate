@@ -7,8 +7,9 @@ from factate.session import get_session
 
 
 class FactBlock(Block):
-    def __init__(self, name, level):
+    def __init__(self, prefix, name, level):
         super().__init__(name, level)
+        self.prefix = "" if prefix.lower() == "fact" else prefix
 
     def finalize(self):
         super().finalize()
@@ -18,4 +19,6 @@ class FactBlock(Block):
             text += line.text + os.linesep
 
         snippet = get_session().page.snippets[-1]
-        snippet.facts.append(Fact(title=create_title(self.name), text=text))
+        snippet.facts.append(
+            Fact(title=create_title(self.name, prefix=self.prefix), text=text)
+        )

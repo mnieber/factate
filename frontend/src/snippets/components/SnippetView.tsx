@@ -1,4 +1,6 @@
+import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { withDefaultProps } from 'react-default-props-context';
 import { SnippetT } from 'src/api/types/SnippetT';
 import { FactCard } from 'src/facts/components';
@@ -20,10 +22,14 @@ export const SnippetView = observer(
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
+    React.useEffect(() => {
+      jQuery('.FactCard')[0].focus();
+    }, []);
+
     return (
       <div className={cn('SnippetView', 'flex flex-col', props.className)}>
         <div className={cn('SnippetView__Title', 'mb-[-32px]')}>
-          {'Example: ' + props.snippet.title}
+          {props.snippet.title}
         </div>
         <CodeBlockListView codeBlocks={props.snippet.codeBlocks} />
         <FactCard facts={props.snippet.facts} />
