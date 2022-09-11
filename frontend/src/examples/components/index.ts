@@ -1,3 +1,3 @@
 export { CodeBlockCard } from './CodeBlockCard';
 export { CodeBlockListView } from './CodeBlockListView';
-export { SnippetView } from './SnippetView';
+export { ExampleView } from './ExampleView';

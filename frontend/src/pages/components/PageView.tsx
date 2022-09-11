@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { withDefaultProps } from 'react-default-props-context';
+import { ExampleT } from 'src/api/types/ExampleT';
 import { PageT } from 'src/api/types/PageT';
-import { SnippetT } from 'src/api/types/SnippetT';
-import { SnippetView } from 'src/snippets/components';
+import { ExampleView } from 'src/examples/components';
 import { TermListView } from 'src/terms/components';
 import { cn } from 'src/utils/classnames';
 import './PageView.scss';
@@ -19,15 +19,15 @@ export const PageView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     if (!props.page) return null;
 
-    const snippetViews = props.page.snippets.map((snippet: SnippetT) => {
+    const exampleViews = props.page.examples.map((example: ExampleT) => {
       return (
-        <SnippetView className={cn('p-4')} key={snippet.id} snippet={snippet} />
+        <ExampleView className={cn('p-4')} key={example.id} example={example} />
       );
     });
 
     return (
       <div className={cn('PageView', 'flex flex-col w-full', props.className)}>
-        <div className="PageView__TopPanel">{snippetViews}</div>
+        <div className="PageView__TopPanel">{exampleViews}</div>
         <div className={cn('flex flex-row', props.className)}>
           <div className="PageView__RightPanel">
             <div>

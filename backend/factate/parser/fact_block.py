@@ -18,7 +18,7 @@ class FactBlock(Block):
         for line in self.lines:
             text += line.text + os.linesep
 
-        snippet = get_session().page.snippets[-1]
-        snippet.facts.append(
+        example = get_session().page.examples[-1]
+        example.facts.append(
             Fact(title=create_title(self.name, prefix=self.prefix), text=text)
         )

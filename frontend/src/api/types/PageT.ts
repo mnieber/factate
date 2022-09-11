@@ -1,9 +1,9 @@
-import { SnippetT } from 'src/api/types/SnippetT';
+import { ExampleT } from 'src/api/types/ExampleT';
 
 export type PageT = {
   id: string;
   name: string;
-  snippets: SnippetT[];
+  examples: ExampleT[];
 };
 
 export type PageByIdT = { [id: string]: PageT };

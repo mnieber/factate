@@ -1,7 +1,7 @@
 from factate.data.line import get_create_line
+from factate.parser.example_block import ExampleBlock
 from factate.parser.fact_block import FactBlock
 from factate.parser.glossary_block import GlossaryBlock
-from factate.parser.snippet_block import SnippetBlock
 
 
 class FormatError(Exception):
@@ -57,10 +57,10 @@ def create_block(name, level):
     if name.startswith("Glossary"):
         return GlossaryBlock(name, level)
 
-    if stripped_name := _remove_prefix(name, "Snippet"):
-        return SnippetBlock(stripped_name, level)
+    if stripped_name := _remove_prefix(name, "Example"):
+        return ExampleBlock(stripped_name, level)
 
-    for prefix in ("Fact", "Intro", "Next"):
+    for prefix in ("Fact", "Note"):
         if stripped_name := _remove_prefix(name, prefix):
             return FactBlock(prefix, stripped_name, level)
 

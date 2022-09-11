@@ -1,11 +1,11 @@
 import { CodeBlockT } from 'src/api/types/CodeBlockT';
 import { FactT } from 'src/api/types/FactT';
 
-export type SnippetT = {
+export type ExampleT = {
   id: string;
   title: string;
   codeBlocks: CodeBlockT[];
   facts: FactT[];
 };
 
-export type SnippetByIdT = { [id: string]: SnippetT };
+export type ExampleByIdT = { [id: string]: ExampleT };

@@ -2,14 +2,14 @@ import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { withDefaultProps } from 'react-default-props-context';
-import { SnippetT } from 'src/api/types/SnippetT';
+import { ExampleT } from 'src/api/types/ExampleT';
+import { CodeBlockListView } from 'src/examples/components/CodeBlockListView';
 import { FactCard } from 'src/facts/components';
-import { CodeBlockListView } from 'src/snippets/components/CodeBlockListView';
 import { cn } from 'src/utils/classnames';
-import './SnippetView.scss';
+import './ExampleView.scss';
 
 type PropsT = {
-  snippet: SnippetT;
+  example: ExampleT;
   className?: any;
 };
 
@@ -17,7 +17,7 @@ type DefaultPropsT = {
   pagesRS: string;
 };
 
-export const SnippetView = observer(
+export const ExampleView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
@@ -27,12 +27,12 @@ export const SnippetView = observer(
     }, []);
 
     return (
-      <div className={cn('SnippetView', 'flex flex-col', props.className)}>
-        <div className={cn('SnippetView__Title', 'mb-[-32px]')}>
-          {props.snippet.title}
+      <div className={cn('ExampleView', 'flex flex-col', props.className)}>
+        <div className={cn('ExampleView__Title', 'mb-[-32px]')}>
+          {props.example.title}
         </div>
-        <CodeBlockListView codeBlocks={props.snippet.codeBlocks} />
-        <FactCard facts={props.snippet.facts} />
+        <CodeBlockListView codeBlocks={props.example.codeBlocks} />
+        <FactCard facts={props.example.facts} />
       </div>
     );
   })

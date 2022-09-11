@@ -2,16 +2,16 @@ import os
 import re
 
 from factate.data.codeblock import CodeBlock
-from factate.data.snippet import Snippet
+from factate.data.example import Example
 from factate.parser.block import Block
 from factate.parser.utils.create_title import create_title
 from factate.session import get_session
 
 
-class SnippetBlock(Block):
+class ExampleBlock(Block):
     def __init__(self, name, level):
         super().__init__(name, level)
-        self.snippet = Snippet(title=create_title(name))
+        self.example = Example(title=create_title(name))
         self.pattern = re.compile(r"^//\s+file: (?P<filename>[\w\ \.]+)")
 
     def finalize(self):
@@ -25,7 +25,7 @@ class SnippetBlock(Block):
                     code_block.code += line.text + os.linesep
                 else:
                     code_block.code += line.text + os.linesep
-                    self.snippet.code_blocks.append(code_block)
+                    self.example.code_blocks.append(code_block)
                     code_block = None
             elif code_block:
                 match = self.pattern.match(line.text)
@@ -34,4 +34,4 @@ class SnippetBlock(Block):
                 else:
                     code_block.code += line.text + os.linesep
 
-        get_session().page.snippets.append(self.snippet)
+        get_session().page.examples.append(self.example)

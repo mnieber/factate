@@ -7,29 +7,29 @@ def write_output():
     output = {"pages": []}
 
     for page in [get_session().page]:
-        page_output = {"id": page.id, "snippets": []}
+        page_output = {"id": page.id, "examples": []}
         output["pages"].append(page_output)
 
-        for snippet in page.snippets:
-            snippet_output = {
-                "id": snippet.id,
-                "title": snippet.title,
+        for example in page.examples:
+            example_output = {
+                "id": example.id,
+                "title": example.title,
                 "codeBlocks": [],
                 "facts": [],
             }
-            page_output["snippets"].append(snippet_output)
+            page_output["examples"].append(example_output)
 
-            for code_block in snippet.code_blocks:
+            for code_block in example.code_blocks:
                 code_block_output = {
                     "id": code_block.id,
                     "filename": code_block.filename,
                     "code": code_block.code,
                 }
-                snippet_output["codeBlocks"].append(code_block_output)
+                example_output["codeBlocks"].append(code_block_output)
 
-            for fact in snippet.facts:
+            for fact in example.facts:
                 fact_output = {"id": fact.id, "title": fact.title, "text": fact.text}
-                snippet_output["facts"].append(fact_output)
+                example_output["facts"].append(fact_output)
 
     output_fn = get_session().output_dir / "pages.json"
     with open(output_fn, "w") as f:
