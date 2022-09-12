@@ -9,6 +9,7 @@ services:
     image: factate_backend_dev
     volumes:
       - ./backend:/app/src
+      - bundle:/app/bundle
       - backend_venv:/app/env
   frontend:
     build:
@@ -22,5 +23,7 @@ services:
       - 3000:3000
     volumes:
       - ./frontend:/app/src
+      - bundle:/app/bundle
 volumes:
   backend_venv: {}
+  bundle: {}

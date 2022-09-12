@@ -14,3 +14,8 @@ run-server:
 
 init-dev: \
 	install
+
+create-bundle:
+	rm -rf /app/bundle/*
+	yarn build
+	cp -rf ./build/* /app/bundle

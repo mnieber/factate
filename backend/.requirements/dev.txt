@@ -6,28 +6,10 @@
 #
 attrs==22.1.0
     # via pytest
-click==8.1.3
-    # via
-    #   -r .requirements/base.txt
-    #   nltk
-importlib-metadata==4.12.0
-    # via
-    #   -r .requirements/base.txt
-    #   markdown
 inflect==6.0.0
     # via -r .requirements/base.txt
 iniconfig==1.1.1
     # via pytest
-joblib==1.1.0
-    # via
-    #   -r .requirements/base.txt
-    #   nltk
-markdown==3.4.1
-    # via -r .requirements/base.txt
-mistune==0.8.4
-    # via -r .requirements/base.txt
-nltk==3.7
-    # via -r .requirements/base.txt
 packaging==21.3
     # via pytest
 pluggy==1.0.0
@@ -51,33 +33,9 @@ pytest-metadata==2.0.2
     # via pytest-html
 pyyaml==6.0
     # via -r .requirements/base.txt
-ramda==0.7.5
-    # via -r .requirements/base.txt
-regex==2022.8.17
-    # via
-    #   -r .requirements/base.txt
-    #   nltk
-ruamel-yaml==0.17.21
-    # via -r .requirements/base.txt
-ruamel-yaml-clib==0.2.6
-    # via
-    #   -r .requirements/base.txt
-    #   ruamel-yaml
 tomli==2.0.1
     # via pytest
-toolz==0.12.0
-    # via
-    #   -r .requirements/base.txt
-    #   ramda
-tqdm==4.64.1
-    # via
-    #   -r .requirements/base.txt
-    #   nltk
 typing-extensions==4.3.0
     # via
     #   -r .requirements/base.txt
     #   pydantic
-zipp==3.8.1
-    # via
-    #   -r .requirements/base.txt
-    #   importlib-metadata

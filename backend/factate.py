@@ -29,7 +29,7 @@ def report(x):
     print(x)
 
 
-if __name__ == "__main__":
+def main():
     parser = create_parser()
     args = parser.parse_args()
 
@@ -53,3 +53,7 @@ if __name__ == "__main__":
     #         traceback.print_exc()
     finally:
         pass
+
+
+if __name__ == "__main__":
+    main()
