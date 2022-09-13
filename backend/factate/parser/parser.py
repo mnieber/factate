@@ -2,6 +2,7 @@ from factate.data.line import get_create_line
 from factate.parser.example_block import ExampleBlock
 from factate.parser.fact_block import FactBlock
 from factate.parser.glossary_block import GlossaryBlock
+from factate.session import get_session
 
 
 class FormatError(Exception):
@@ -71,3 +72,4 @@ def parse_markdown(markdown):
         create_line_policy=get_create_line(),
     )
     parser.parse(markdown)
+    return [get_session().page]

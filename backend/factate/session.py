@@ -10,18 +10,15 @@ _session = None
 
 
 class Session:
-    def __init__(self, index_file, settings_fn, output_dir):
-        self.index_file = index_file
+    def __init__(self, settings_fn, output_dir):
         self.settings_fn = settings_fn
         self.settings = None
-        self.output_dir = Path(output_dir)
+        self.output_fn = Path(output_dir) / "pages.json"
         self.glossary = Glossary()
         self.page = Page()
 
     def load_settings(self):
-        settings_fn = Path(self.index_file) / self.settings_fn
-        self.settings = load_settings(settings_fn)
-        self.settings["index_file"] = self.index_file
+        self.settings = load_settings(self.settings_fn)
 
         for one, many in self.settings.get("plurals", {}).items():
             install_plural(one, many)
@@ -33,8 +30,6 @@ class Session:
 def set_session(session):
     global _session
 
-    if _session:
-        raise Exception("There already is a session")
     _session = session
 
 

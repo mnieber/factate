@@ -2873,6 +2873,11 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
+aspiration@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/aspiration/-/aspiration-0.3.1.tgz#772268970e2515b1ffb6e7de8fcca178028cac1d"
+  integrity sha512-SHDhFuGgwJsYFDMY7UGbc3Z8lhPxej+vbsSaZ7bY4YXtbA7+pthM+0fHHTm/tYya9MtDPhW0OdWFu6fK32YKZw==
+
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assert-plus/-/assert-plus-1.0.0.tgz#f12e0f3c5d77b0b1cdd9146942e4e96c1e4dd525"
@@ -9335,6 +9340,21 @@ sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
+
+skandha-facets@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/skandha-facets/-/skandha-facets-0.9.0.tgz#8be83a79369fc39a8d7897a93b8be4b7de5b1cd9"
+  integrity sha512-6pL09Zk4a+xQtsibuA9gDZarQR8i88dRt+cQN+qvXGdPU0FkgOrYFRyeI3LPlcarTVPkv7fABs7pn9D1J0JRSg==
+
+skandha-mobx@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/skandha-mobx/-/skandha-mobx-0.9.1.tgz#52e6c6e4988d5ed5a02b54a23a0162d4188a6e8c"
+  integrity sha512-FqCUXbfhbc6MB5XuWFXQ3nuvtMmP5HaGFgsmJR9g8beRj6nmP07BhGpRzTpYHYF4xb1Or4IeF6924ws/ygntHg==
+
+skandha@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/skandha/-/skandha-0.9.1.tgz#0fa29e856bc8d1fe94671339290c3b4816f64212"
+  integrity sha512-jqW4aJpaRGS+K07pBuhOzymZg1PNtwB1vVTRA8vv/LdjNgNrI/H4ExqKpif6xA7cgMTlj6i+h5P+ZFzEuRqPLA==
 
 slash@^3.0.0:
   version "3.0.0"

@@ -1,12 +1,13 @@
 import json
+import os
 
 from factate.session import get_session
 
 
-def write_output():
+def write_output(pages):
     output = {"pages": []}
 
-    for page in [get_session().page]:
+    for page in pages:
         page_output = {"id": page.id, "examples": []}
         output["pages"].append(page_output)
 
@@ -31,6 +32,8 @@ def write_output():
                 fact_output = {"id": fact.id, "title": fact.title, "text": fact.text}
                 example_output["facts"].append(fact_output)
 
-    output_fn = get_session().output_dir / "pages.json"
+    output_fn = get_session().output_fn
+    if os.path.exists(output_fn):
+        os.remove(output_fn)
     with open(output_fn, "w") as f:
         json.dump(output, f, indent=2)

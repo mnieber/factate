@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile.dev
     command: sleep infinity
     image: factate_backend_dev
+    ports:
+      - 8000:8000
     volumes:
       - ./backend:/app/src
       - bundle:/app/bundle
