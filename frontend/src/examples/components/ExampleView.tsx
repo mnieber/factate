@@ -28,9 +28,7 @@ export const ExampleView = observer(
 
     return (
       <div className={cn('ExampleView', 'flex flex-col', props.className)}>
-        <div className={cn('ExampleView__Title', 'mb-[-32px]')}>
-          {props.example.title}
-        </div>
+        <div className={cn('ExampleView__Title')}>{props.example.title}</div>
         <CodeBlockListView codeBlocks={props.example.codeBlocks} />
         <FactCard facts={props.example.facts} />
       </div>

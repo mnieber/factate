@@ -11,7 +11,11 @@ setup(
     author_email="hallomaarten@yahoo.com",
     license="MIT",
     packages=find_packages(),
-    package_data={},
+    package_data={
+        "factate": [
+            "bundle/*.*",
+        ]
+    },
     entry_points={
         "console_scripts": [
             "factate=factate.factate:main",
@@ -22,6 +26,8 @@ setup(
     install_requires=[
         "pyyaml==6.0",
         "inflect==6.0.0",
+        "bottle",
+        "gunicorn",
     ],
     zip_safe=False,
     python_requires=">=3.6",

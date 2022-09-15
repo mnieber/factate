@@ -58,7 +58,7 @@ export const CodeBlockListView = observer(
     const noItems = <h2>There are no code blocks</h2>;
 
     return (
-      <div className={cn('CodeBlockListView', props.className)}>
+      <div className={cn('CodeBlockListView', 'mt-4', props.className)}>
         <Tabs className="CodeBlockListView__Tabs">
           <TabList>{tabs}</TabList>
           {tabPanels}
