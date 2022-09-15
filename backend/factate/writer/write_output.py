@@ -16,6 +16,7 @@ def write_output(pages):
             example_output = {
                 "id": example.id,
                 "title": example.title,
+                "text": example.text,
                 "codeBlocks": [],
                 "facts": [],
             }

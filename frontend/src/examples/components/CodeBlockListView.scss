@@ -1,3 +1,9 @@
+.CodeBlockListView {
+    .react-tabs__tab-list {
+        margin-bottom: 0px !important;
+    }
+}
+
 .CodeBlockListView__Body {
     display: grid;
     grid-template-areas:

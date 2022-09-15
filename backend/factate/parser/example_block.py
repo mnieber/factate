@@ -11,13 +11,14 @@ from factate.session import get_session
 class ExampleBlock(Block):
     def __init__(self, name, level):
         super().__init__(name, level)
-        self.example = Example(title=create_title(name))
+        self.example = Example(title=create_title(name), level=level)
         self.pattern = re.compile(r"^//\s+file: (?P<filename>[\w\ \.]+)")
 
     def finalize(self):
         super().finalize()
 
         code_block = None
+
         for line in self.lines:
             if line.text.startswith("```"):
                 if code_block is None:
@@ -33,5 +34,7 @@ class ExampleBlock(Block):
                     code_block.filename = match.group("filename")
                 else:
                     code_block.code += line.text + os.linesep
+            else:
+                self.example.text += line.text + os.linesep
 
         get_session().page.examples.append(self.example)

@@ -2,6 +2,7 @@ import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { withDefaultProps } from 'react-default-props-context';
+import ReactMarkdown from 'react-markdown';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { CodeBlockListView } from 'src/examples/components/CodeBlockListView';
 import { FactCard } from 'src/facts/components';
@@ -28,9 +29,12 @@ export const ExampleView = observer(
 
     return (
       <div className={cn('ExampleView', 'flex flex-col', props.className)}>
-        <div className={cn('ExampleView__Title')}>{props.example.title}</div>
+        <ReactMarkdown
+          className={cn('ExampleView__Text', 'Markdown')}
+          children={props.example.text}
+        />
         <CodeBlockListView codeBlocks={props.example.codeBlocks} />
-        <FactCard facts={props.example.facts} />
+        <FactCard className="mt-2" facts={props.example.facts} />
       </div>
     );
   })
