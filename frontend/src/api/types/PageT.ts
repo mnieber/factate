@@ -1,9 +1,9 @@
-import { ExampleT } from 'src/api/types/ExampleT';
+import { BlockT } from 'src/api/types/BlockT';
 
 export type PageT = {
   id: string;
   name: string;
-  examples: ExampleT[];
+  blocks: BlockT[];
 };
 
 export type PageByIdT = { [id: string]: PageT };

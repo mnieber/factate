@@ -1,10 +1,8 @@
+import { BlockT } from 'src/api/types/BlockT';
 import { CodeBlockT } from 'src/api/types/CodeBlockT';
 import { FactT } from 'src/api/types/FactT';
 
-export type ExampleT = {
-  id: string;
-  title: string;
-  text: string;
+export type ExampleT = BlockT & {
   codeBlocks: CodeBlockT[];
   facts: FactT[];
 };

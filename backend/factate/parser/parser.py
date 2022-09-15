@@ -1,4 +1,5 @@
 from factate.data.line import get_create_line
+from factate.parser.block import Block
 from factate.parser.clean import clean_sentence
 from factate.parser.example_block import ExampleBlock
 from factate.parser.fact_block import FactBlock
@@ -55,6 +56,8 @@ def create_block(name, level):
     for prefix in ("Fact", "Note"):
         if stripped_name := _remove_prefix(name, prefix):
             return FactBlock(prefix, stripped_name, level)
+
+    return Block(name, level)
 
 
 def parse_markdown(markdown):
