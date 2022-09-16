@@ -3,9 +3,10 @@ import { withDefaultProps } from 'react-default-props-context';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { PageT } from 'src/api/types/PageT';
 import { SectionT } from 'src/api/types/SectionT';
+import { TermT } from 'src/api/types/TermT';
 import { ExampleView } from 'src/examples/components';
 import { SectionView } from 'src/examples/components/SectionView';
-import { TermListView } from 'src/terms/components';
+import { Glossary } from 'src/terms/components/Glossary';
 import { cn } from 'src/utils/classnames';
 import './PageView.scss';
 
@@ -15,13 +16,14 @@ type PropsT = {
 
 type DefaultPropsT = {
   page: PageT;
+  terms: TermT[];
 };
 
 export const PageView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     if (!props.page) return null;
 
-    const exampleViews = props.page.sections.map((section: SectionT) => {
+    const sectionViews = props.page.sections.map((section: SectionT) => {
       if (section.type === 'example') {
         return (
           <ExampleView
@@ -37,14 +39,19 @@ export const PageView = observer(
     });
 
     return (
-      <div className={cn('PageView', 'flex flex-col w-full', props.className)}>
-        <div className="PageView__TopPanel">{exampleViews}</div>
-        <div className={cn('flex flex-row', props.className)}>
-          <div className="PageView__RightPanel">
-            <div>
-              <TermListView />
-            </div>
-          </div>
+      <div
+        className={cn(
+          'PageView',
+          'flex flex-row',
+          'w-full grow',
+          props.className
+        )}
+      >
+        <div className={cn('PageView__LeftPanel', 'grow')}>
+          <div className={cn('PageView__Sections')}>{sectionViews}</div>
+        </div>
+        <div className={cn('PageView__RightPanel')}>
+          <Glossary />
         </div>
       </div>
     );

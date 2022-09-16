@@ -1,0 +1,12 @@
+.Glossary {
+    width: 300px;
+    overflow-y: auto;
+
+    .Glossary__Card {
+        width: 300px;
+    }
+
+    .Glossary__Title {
+        @apply text-2xl;
+    }
+}

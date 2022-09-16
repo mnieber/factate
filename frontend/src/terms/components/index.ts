@@ -1,2 +1,2 @@
-export { TermListView } from './TermListView';
-export { TermListViewItem } from './TermListViewItem';
+export { Glossary } from './Glossary';
+export { GlossaryItem } from './GlossaryItem';

@@ -1,2 +1,16 @@
 .PageView {
+    overflow: hidden;
+
+    .PageView__LeftPanel {
+        direction: rtl;
+        overflow-y: auto;
+    }
+
+    .PageView__RightPanel {
+        overflow-y: auto;
+    }
+
+    .PageView__Sections {
+        direction: ltr;
+    }
 }

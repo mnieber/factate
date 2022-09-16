@@ -14,7 +14,8 @@ def write_output(pages):
     for term in get_session().glossary:
         glossary_output["terms"].append(
             {
-                "term": term.name,
+                "id": term.id,
+                "name": term.name,
                 "definition": term.definition,
             }
         )

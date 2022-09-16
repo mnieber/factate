@@ -20,7 +20,7 @@ class GlossaryBlock(Block):
             name = match.group("name")
             pos = len(match.group(0))
             definition = line.text[pos:]
-            self.terms.append(Term(name, definition))
+            self.terms.append(Term(name=name, definition=definition))
         elif self.terms:
             self.terms[-1].definition += line.text
 
