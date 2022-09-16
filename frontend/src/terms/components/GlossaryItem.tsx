@@ -28,8 +28,11 @@ export const GlossaryItem: React.FC<PropsT> = observer(
         onMouseDown={props.onMouseDown}
         onMouseUp={props.onMouseUp}
       >
-        <div>
-          {props.term.name}: {props.term.definition}
+        <div
+          className={cn('GlossaryItem__Text')}
+          data-before={props.term.name + ': '}
+        >
+          {props.term.definition}
         </div>
       </div>
     );

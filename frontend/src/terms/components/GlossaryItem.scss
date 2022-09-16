@@ -1,3 +1,8 @@
 .GlossaryItem {
   @apply cursor-pointer;
 }
+
+.GlossaryItem__Text:before {
+    content: attr(data-before);
+    font-weight: bold;
+}
