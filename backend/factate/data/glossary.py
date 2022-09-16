@@ -1,6 +1,7 @@
 class Glossary:
-    def __init__(self):
+    def __init__(self, name):
         self._terms = {}
+        self.name = name
 
     def add_term(self, term):
         self._terms[term.name] = term

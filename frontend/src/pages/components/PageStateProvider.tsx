@@ -22,7 +22,7 @@ export const PageStateProvider = observer(
       getPages()
         .then((pages: ObjT) => {
           runInAction(() => state.setPages(pages.pages));
-          runInAction(() => state.setTerms(pages.glossary.terms));
+          runInAction(() => state.setGlossaries(pages.glossaries));
           state.pages.highlight.highlightItem(pages.pages[0]?.id);
         })
         .catch((error: Error) => {
@@ -40,8 +40,8 @@ export const PageStateProvider = observer(
             state.data.inputs.pages.length ? 'loaded' : 'loading',
         },
         {
-          terms: () => {
-            return state.data.outputs.termsDisplay;
+          glossaries: () => {
+            return state.data.outputs.glossariesDisplay;
           },
         },
       ]);

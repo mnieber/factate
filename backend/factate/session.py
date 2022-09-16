@@ -1,6 +1,5 @@
 import os
 
-from factate.data.glossary import Glossary
 from factate.data.page import Page
 from factate.factate_dir import get_factate_parent_dir
 from factate.settings import load_settings
@@ -16,7 +15,7 @@ class Session:
         self.reset()
 
     def reset(self):
-        self.glossary = Glossary()
+        self.glossaries = []
         self.page = Page()
 
     def load_settings(self):

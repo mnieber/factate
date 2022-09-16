@@ -1,5 +1,6 @@
 import re
 
+from factate.data.glossary import Glossary
 from factate.data.term import Term
 from factate.parser.block import Block
 from factate.session import get_session
@@ -7,7 +8,7 @@ from factate.session import get_session
 
 class GlossaryBlock(Block):
     def __init__(self, name, level):
-        super().__init__(name, level)
+        super().__init__(name=get_glossary_name(name), level=level)
         self.terms = list()
         self.pattern = re.compile(r"^-\s+(?P<name>[\w\ ]+): ")
 
@@ -28,6 +29,15 @@ class GlossaryBlock(Block):
         super().finalize()
 
         # add terms to the glossary
-        glossary = get_session().glossary
+        glossary = Glossary(self.name)
         for term in self.terms:
             glossary.add_term(term)
+        get_session().glossaries.append(glossary)
+
+
+def get_glossary_name(name):
+    pattern = re.compile(r"^Glossary \((?P<name>[\w\ ]+)\)")
+    match = pattern.match(name)
+    if match:
+        return match.group("name")
+    return ""

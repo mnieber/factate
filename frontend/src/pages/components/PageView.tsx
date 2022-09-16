@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import { withDefaultProps } from 'react-default-props-context';
 import { ExampleT } from 'src/api/types/ExampleT';
+import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
 import { SectionT } from 'src/api/types/SectionT';
-import { TermT } from 'src/api/types/TermT';
 import { ExampleView } from 'src/examples/components';
 import { SectionView } from 'src/examples/components/SectionView';
-import { Glossary } from 'src/terms/components/Glossary';
+import { Glossary } from 'src/glossaries/components/Glossary';
 import { cn } from 'src/utils/classnames';
 import './PageView.scss';
 
@@ -16,7 +16,7 @@ type PropsT = {
 
 type DefaultPropsT = {
   page: PageT;
-  terms: TermT[];
+  glossaries: GlossaryT[];
 };
 
 export const PageView = observer(
@@ -38,6 +38,12 @@ export const PageView = observer(
       );
     });
 
+    const glossaryViews = props.glossaries.map((glossary: GlossaryT) => {
+      return (
+        <Glossary className={cn()} key={glossary.id} glossary={glossary} />
+      );
+    });
+
     return (
       <div
         className={cn(
@@ -50,9 +56,7 @@ export const PageView = observer(
         <div className={cn('PageView__LeftPanel', 'grow')}>
           <div className={cn('PageView__Sections')}>{sectionViews}</div>
         </div>
-        <div className={cn('PageView__RightPanel')}>
-          <Glossary />
-        </div>
+        <div className={cn('PageView__RightPanel')}>{glossaryViews}</div>
       </div>
     );
   })

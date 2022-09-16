@@ -1,10 +1,10 @@
 import { input } from 'skandha';
+import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
-import { TermT } from 'src/api/types/TermT';
 
 export class Inputs {
   @input pages: Array<PageT> = [];
-  @input terms: Array<TermT> = [];
+  @input glossaries: Array<GlossaryT> = [];
 
   static className = () => 'Inputs';
 }

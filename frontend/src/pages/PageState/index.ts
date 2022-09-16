@@ -3,8 +3,8 @@ import * as Skandha from 'skandha';
 import { createConnector } from 'skandha';
 import { Highlight } from 'skandha-facets/Highlight';
 import { registerCtr } from 'skandha-mobx';
+import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
-import { TermT } from 'src/api/types/TermT';
 import { Inputs } from 'src/pages/PageState/facets/Inputs';
 import { Outputs } from 'src/pages/PageState/facets/Outputs';
 import { initPages } from 'src/pages/PageState/initPages';
@@ -25,8 +25,8 @@ export class PageState {
     this.data.inputs.pages = pages;
   }
 
-  setTerms(terms: TermT[]) {
-    this.data.inputs.terms = terms;
+  setGlossaries(glossaries: GlossaryT[]) {
+    this.data.inputs.glossaries = glossaries;
   }
 
   getSummary() {
@@ -43,7 +43,7 @@ export class PageState {
 
     con['pages.highlight'].item = con['pages.highlight'].id.tf(getPageById);
     con['data.outputs'].pagesDisplay = con['data.inputs'].pages;
-    con['data.outputs'].termsDisplay = con['data.inputs'].terms;
+    con['data.outputs'].glossariesDisplay = con['data.inputs'].glossaries;
 
     con.connect();
   }

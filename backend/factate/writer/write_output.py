@@ -8,17 +8,20 @@ from factate.session import get_session
 
 
 def write_output(pages):
-    output = {"glossary": {"terms": []}, "pages": []}
+    output = {"glossaries": [], "pages": []}
 
-    glossary_output = output["glossary"]
-    for term in get_session().glossary:
-        glossary_output["terms"].append(
-            {
-                "id": term.id,
-                "name": term.name,
-                "definition": term.definition,
-            }
-        )
+    glossaries_output = output["glossaries"]
+    for glossary in get_session().glossaries:
+        glossary_output = {"name": glossary.name, "terms": []}
+        glossaries_output.append(glossary_output)
+        for term in glossary:
+            glossary_output["terms"].append(
+                {
+                    "id": term.id,
+                    "name": term.name,
+                    "definition": term.definition,
+                }
+            )
 
     for page in pages:
         page_output = {"id": page.id, "sections": []}
