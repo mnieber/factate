@@ -8,7 +8,16 @@ from factate.session import get_session
 
 
 def write_output(pages):
-    output = {"pages": []}
+    output = {"glossary": {"terms": []}, "pages": []}
+
+    glossary_output = output["glossary"]
+    for term in get_session().glossary:
+        glossary_output["terms"].append(
+            {
+                "term": term.name,
+                "definition": term.definition,
+            }
+        )
 
     for page in pages:
         page_output = {"id": page.id, "sections": []}
@@ -21,6 +30,7 @@ def write_output(pages):
                     "type": "example",
                     "id": example.id,
                     "title": example.title,
+                    "level": example.level,
                     "text": example.text,
                     "codeBlocks": [],
                     "facts": [],
@@ -40,6 +50,7 @@ def write_output(pages):
                         "id": fact.id,
                         "title": fact.title,
                         "text": fact.text,
+                        "type": fact.type,
                     }
                     section_output["facts"].append(fact_output)
             elif isinstance(section, StandardSection):
@@ -47,6 +58,7 @@ def write_output(pages):
                     "type": "section",
                     "id": section.id,
                     "title": section.title,
+                    "level": section.level,
                     "text": section.text,
                 }
                 page_output["sections"].append(section_output)

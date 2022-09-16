@@ -15,6 +15,9 @@ class OnInputFileChanged(FileSystemEventHandler):
         self.copy_to = copy_to
 
     def on_modified(self, event):
+        if event and ".factate" in event.src_path.split("/"):
+            return
+
         session = get_session()
         session.reset()
 
@@ -23,7 +26,12 @@ class OnInputFileChanged(FileSystemEventHandler):
 
         if self.copy_to:
             print("Copying", session.settings["output_fn"], "to", self.copy_to)
-            shutil.copyfile(session.settings["output_fn"], self.copy_to)
+            shutil.copyfile(
+                session.settings["output_fn"],
+                os.path.join(self.copy_to, "pages.json")
+                if os.path.isdir(self.copy_to)
+                else self.copy_to,
+            )
 
 
 @route("/")

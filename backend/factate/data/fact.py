@@ -7,3 +7,4 @@ from factate.data.section import Entity
 class Fact(Entity):
     title: str = ""
     text: str = ""
+    type: str = ""

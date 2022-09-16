@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
-import { SectionT } from 'src/api/types/SectionT';
+import { createTitle, SectionT } from 'src/api/types/SectionT';
 import { cn } from 'src/utils/classnames';
 import './SectionView.scss';
 
@@ -23,7 +23,7 @@ export const SectionView = observer(
       <div className={cn('SectionView', 'flex flex-col', props.className)}>
         <ReactMarkdown
           className={cn('SectionView__Text', 'Markdown')}
-          children={props.section.text}
+          children={createTitle(props.section) + props.section.text}
         />
       </div>
     );

@@ -32,7 +32,6 @@ def report(x):
 
 
 def main():
-    __import__("pudb").set_trace()
     args = parse_args()
 
     if args.command == "init":

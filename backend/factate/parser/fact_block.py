@@ -8,9 +8,9 @@ from factate.session import get_session
 
 
 class FactBlock(Block):
-    def __init__(self, prefix, name, level):
+    def __init__(self, type, name, level):
         super().__init__(name, level)
-        self.prefix = "" if prefix.lower() == "fact" else prefix
+        self.type = type
 
     def finalize(self):
         super().finalize()
@@ -22,6 +22,9 @@ class FactBlock(Block):
         example = get_session().page.sections[-1]
         assert isinstance(example, Example)
 
+        prefix = "" if self.type in ("fact", "note") else self.type
         example.facts.append(
-            Fact(title=create_title(self.name, prefix=self.prefix), text=text)
+            Fact(
+                title=create_title(self.name, prefix=prefix), text=text, type=self.type
+            )
         )

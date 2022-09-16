@@ -39,6 +39,9 @@ class Parser:
             else:
                 self.add_line_to_current_block(line)
 
+        if self.block:
+            self.block.finalize()
+
 
 def _remove_prefix(name, prefix):
     for p in (prefix + ":", prefix):
@@ -56,7 +59,7 @@ def create_block(name, level):
 
     for prefix in ("Fact", "Note"):
         if stripped_name := _remove_prefix(name, prefix):
-            return FactBlock(prefix, stripped_name, level)
+            return FactBlock(prefix.lower(), stripped_name, level)
 
     return StandardSectionBlock(name, level)
 
