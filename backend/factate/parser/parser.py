@@ -4,6 +4,7 @@ from factate.parser.clean import clean_sentence
 from factate.parser.example_block import ExampleBlock
 from factate.parser.fact_block import FactBlock
 from factate.parser.glossary_block import GlossaryBlock
+from factate.parser.standard_section_block import StandardSectionBlock
 from factate.session import get_session
 
 
@@ -57,7 +58,7 @@ def create_block(name, level):
         if stripped_name := _remove_prefix(name, prefix):
             return FactBlock(prefix, stripped_name, level)
 
-    return Block(name, level)
+    return StandardSectionBlock(name, level)
 
 
 def parse_markdown(markdown):

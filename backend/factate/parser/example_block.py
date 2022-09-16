@@ -37,4 +37,4 @@ class ExampleBlock(Block):
             else:
                 self.example.text += line.text + os.linesep
 
-        get_session().page.examples.append(self.example)
+        get_session().page.sections.append(self.example)

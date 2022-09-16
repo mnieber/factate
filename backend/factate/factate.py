@@ -13,7 +13,7 @@ def parse_args():
     parser = ArgumentParser()
     parser.add_argument("command", choices=("init", "compile"))
     parser.add_argument("--index", dest="index_file")
-    parser.add_argument("--debug", dest="index_file", default=False)
+    parser.add_argument("--debug", action="store_true", default=False)
     parser.add_argument("--serve", action="store_true", default=False)
     parser.add_argument("--copy-to")
     parser.add_argument("--stacktrace", action="store_true")

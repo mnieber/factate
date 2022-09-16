@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from factate.data.entity import Entity
+from factate.data.section import Entity
 
 
 @dataclass

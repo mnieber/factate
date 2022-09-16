@@ -1,8 +1,8 @@
-import { BlockT } from 'src/api/types/BlockT';
 import { CodeBlockT } from 'src/api/types/CodeBlockT';
 import { FactT } from 'src/api/types/FactT';
+import { SectionT } from 'src/api/types/SectionT';
 
-export type ExampleT = BlockT & {
+export type ExampleT = SectionT & {
   codeBlocks: CodeBlockT[];
   facts: FactT[];
 };
