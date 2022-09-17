@@ -5,8 +5,6 @@ import ReactMarkdown from 'react-markdown';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { ButtonBack } from 'src/facts/components/ButtonBack';
 import { ButtonForward } from 'src/facts/components/ButtonForward';
-import { findNextElm } from 'src/frames/utils/handleEnterAsTabToNext';
-import { scrollIntoView } from 'src/frames/utils/scrollIntoView';
 import { cn } from 'src/utils/classnames';
 import './FactCard.scss';
 
@@ -90,27 +88,6 @@ export const FactCard: React.FC<PropsT> = observer(
         onKeyDown={(e) => {
           if (e.key === 'ArrowLeft') moveBack();
           if (e.key === 'ArrowRight') moveForward();
-          if (e.ctrlKey && e.key === 'ArrowDown') {
-            e.preventDefault();
-            const nextFactCard = findNextElm(e.target, '.FactCard', true);
-            if (!nextFactCard) return;
-
-            scrollIntoView(nextFactCard);
-            nextFactCard.focus({ preventScroll: true });
-          }
-          if (e.ctrlKey && e.key === 'ArrowUp') {
-            e.preventDefault();
-            const nextFactCard = findNextElm(e.target, '.FactCard', false);
-            if (!nextFactCard) return;
-
-            const nextCodeBlock = findNextElm(
-              nextFactCard,
-              '.FactCard, .CodeBlockListView',
-              false
-            );
-            nextCodeBlock && scrollIntoView(nextCodeBlock);
-            nextFactCard && nextFactCard.focus({ preventScroll: true });
-          }
         }}
       >
         <div className={cn('FactCard__Body')}>{factDivs}</div>

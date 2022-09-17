@@ -10,6 +10,7 @@ import { ExampleView } from 'src/examples/components';
 import { SectionView } from 'src/examples/components/SectionView';
 import { areRectanglesIntersecting } from 'src/frames/utils/areRectanglesIntersecting';
 import { findNextElm } from 'src/frames/utils/handleEnterAsTabToNext';
+import { scrollToNextHeading } from 'src/frames/utils/scrollToNextHeading';
 import { Glossary } from 'src/glossaries/components/Glossary';
 import { cn } from 'src/utils/classnames';
 import './PageView.scss';
@@ -71,6 +72,7 @@ export const PageView = observer(
       >
         <div
           ref={ref}
+          tabIndex={123}
           className={cn('PageView__LeftPanel', 'grow')}
           onScroll={(e: any) => {
             if (ref.current) {
@@ -89,6 +91,16 @@ export const PageView = observer(
                   nextFactCard?.focus({ preventScroll: true });
                 }
               }
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowDown') {
+              e.preventDefault();
+              scrollToNextHeading(ref.current, isVisible, true);
+            }
+            if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowUp') {
+              e.preventDefault();
+              scrollToNextHeading(ref.current, isVisible, false);
             }
           }}
         >
