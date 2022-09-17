@@ -12,7 +12,7 @@ def write_output(pages):
 
     glossaries_output = output["glossaries"]
     for glossary in get_session().glossaries:
-        glossary_output = {"name": glossary.name, "terms": []}
+        glossary_output = {"id": glossary.id, "name": glossary.name, "terms": []}
         glossaries_output.append(glossary_output)
         for term in glossary:
             glossary_output["terms"].append(

@@ -25,7 +25,7 @@ export const ExampleView = observer(
     if (resourceView) return resourceView;
 
     React.useEffect(() => {
-      jQuery('.FactCard')[0].focus();
+      jQuery('.FactCard')[0].focus({ preventScroll: true });
     }, []);
 
     return (
@@ -35,7 +35,7 @@ export const ExampleView = observer(
           children={createTitle(props.example) + props.example.text}
         />
         <CodeBlockListView codeBlocks={props.example.codeBlocks} />
-        <FactCard className="mt-2" facts={props.example.facts} />
+        <FactCard className="mt-2" example={props.example} />
       </div>
     );
   })

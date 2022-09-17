@@ -1,5 +1,9 @@
-class Glossary:
+from factate.data.entity import Entity
+
+
+class Glossary(Entity):
     def __init__(self, name):
+        super().__init__()
         self._terms = {}
         self.name = name
 
