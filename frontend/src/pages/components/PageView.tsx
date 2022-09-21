@@ -31,6 +31,7 @@ export const PageView = observer(
   withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
     const ref = React.useRef<any>(null);
     const [scrollPos, setScrollPos] = React.useState<number>(-1);
+
     const isVisible = React.useMemo(
       () => (elm: any) => {
         return areRectanglesIntersecting(
@@ -81,10 +82,14 @@ export const PageView = observer(
           UIkit.offcanvas(elm, { flip: true });
         }}
       >
-        <div className="uk-offcanvas-bar">{glossaryViews}</div>
+        <div className={cn('uk-offcanvas-bar', 'mt-[-16px]')}>
+          {glossaryViews}
+        </div>
       </div>
     ) : (
-      <div className={cn('PageView__RightPanel')}>{glossaryViews}</div>
+      <div className={cn('PageView__RightPanel', 'flex flex-col')}>
+        {glossaryViews}
+      </div>
     );
 
     return (
@@ -148,3 +153,32 @@ export const PageView = observer(
     );
   })
 );
+
+type FooT = {
+  foo: number;
+  bar: number;
+};
+
+const checkFooT = (x: FooT) => x;
+
+const Foo = (props: FooT) => {
+  return <div>{props.foo}</div>;
+};
+
+export const Bar = (props: PropsT & DefaultPropsT) => {
+  // const patch: DefaultPropsT = {
+  //   page: props.page,
+  //   glossaries: props.glossaries,
+  //   isMobile: props.isMobile,
+  //   foo: 123,
+  // } as DefaultPropsT;
+
+  return (
+    <Foo
+      {...checkFooT({
+        foo: 123,
+        bar: 456,
+      })}
+    />
+  );
+};

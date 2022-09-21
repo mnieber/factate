@@ -1,4 +1,3 @@
-import { runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
 import React from 'react';
@@ -21,8 +20,8 @@ export const PageStateProvider = observer(
     React.useEffect(() => {
       getPages()
         .then((pages: ObjT) => {
-          runInAction(() => state.setPages(pages.pages));
-          runInAction(() => state.setGlossaries(pages.glossaries));
+          state.setPages(pages.pages);
+          state.setGlossaries(pages.glossaries);
           state.pages.highlight.highlightItem(pages.pages[0]?.id);
         })
         .catch((error: Error) => {
@@ -33,15 +32,14 @@ export const PageStateProvider = observer(
     const getDefaultProps = () => {
       return R.mergeAll([
         {
-          pages: () => state.data.outputs.pagesDisplay,
+          pages: () => state.pages.data.pages,
           pagesHighlight: () => state.pages.highlight,
           page: () => state.pages.highlight.item,
-          pagesRS: () =>
-            state.data.inputs.pages.length ? 'loaded' : 'loading',
+          pagesRS: () => (state.pages.data.pages.length ? 'loaded' : 'loading'),
         },
         {
           glossaries: () => {
-            return state.data.outputs.glossariesDisplay;
+            return state.pages.data.glossaries;
           },
         },
       ]);
