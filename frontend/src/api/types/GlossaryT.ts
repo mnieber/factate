@@ -5,3 +5,5 @@ export type GlossaryT = {
   name: string;
   terms: TermT[];
 };
+
+export type GlossaryByIdT = { [id: string]: GlossaryT };

@@ -1,7 +1,7 @@
 import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { withDefaultProps } from 'react-default-props-context';
+import { stub, withDefaultProps } from 'react-default-props-context';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
@@ -21,14 +21,14 @@ type PropsT = {
   className?: any;
 };
 
-type DefaultPropsT = {
-  page: PageT;
-  glossaries: GlossaryT[];
-  isMobile: boolean;
+const DefaultProps = {
+  page: stub as PageT,
+  glossaries: stub as GlossaryT[],
+  isMobile: stub as boolean,
 };
 
 export const PageView = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const ref = React.useRef<any>(null);
     const [scrollPos, setScrollPos] = React.useState<number>(-1);
 
@@ -147,5 +147,5 @@ export const PageView = observer(
         </div>
       )
     );
-  })
+  }, DefaultProps)
 );

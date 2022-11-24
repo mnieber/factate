@@ -13,10 +13,10 @@ export type PropsT = {
   example: ExampleT;
 };
 
-type DefaultPropsT = {};
+const DefaultProps = {};
 
 export const FactCard: React.FC<PropsT> = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const [factIdx, setFactIdx] = React.useState(0);
     if (!props.example.facts.length) return null;
 
@@ -94,5 +94,5 @@ export const FactCard: React.FC<PropsT> = observer(
         <ul className={cn('uk-dotnav', 'mt-2', 'self-center')}>{dotNavDivs}</ul>
       </div>
     );
-  })
+  }, DefaultProps)
 );

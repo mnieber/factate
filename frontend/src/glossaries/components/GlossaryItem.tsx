@@ -13,10 +13,10 @@ export type PropsT = {
   term: TermT;
 };
 
-type DefaultPropsT = {};
+const DefaultProps = {};
 
 export const GlossaryItem: React.FC<PropsT> = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     return (
       <div
         className={cn(
@@ -36,5 +36,5 @@ export const GlossaryItem: React.FC<PropsT> = observer(
         </div>
       </div>
     );
-  })
+  }, DefaultProps)
 );

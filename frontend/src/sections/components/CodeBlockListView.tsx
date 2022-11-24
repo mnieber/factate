@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
 import React from 'react';
-import { withDefaultProps } from 'react-default-props-context';
+import { stub, withDefaultProps } from 'react-default-props-context';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.scss';
 import { CodeBlockT } from 'src/api/types/CodeBlockT';
@@ -14,12 +14,12 @@ type PropsT = {
   codeBlocks: CodeBlockT[];
 };
 
-type DefaultPropsT = {
-  pagesRS: string;
+const DefaultProps = {
+  pagesRS: stub as string,
 };
 
 export const CodeBlockListView = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
@@ -67,5 +67,5 @@ export const CodeBlockListView = observer(
         <div className={cn('CodeBlockListView__Body')}>{codeBlockCards}</div>
       </div>
     );
-  })
+  }, DefaultProps)
 );

@@ -7,14 +7,14 @@ type PropsT = {
   className?: any;
 };
 
-type DefaultPropsT = {};
+const DefaultProps = {};
 
 export const Main = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     return (
       <div
         className={cn('Main', 'flex flex-col w-full', props.className)}
       ></div>
     );
-  })
+  }, DefaultProps)
 );

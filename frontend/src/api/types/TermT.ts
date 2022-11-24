@@ -1,7 +1,7 @@
 export type TermT = {
+  definition: string;
   id: string;
   name: string;
-  definition: string;
 };
 
 export type TermByIdT = { [id: string]: TermT };

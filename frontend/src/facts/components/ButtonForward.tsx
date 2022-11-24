@@ -9,10 +9,10 @@ type PropsT = {
   onClick: Function;
 };
 
-type DefaultPropsT = {};
+const DefaultProps = {};
 
 export const ButtonForward: React.FC<PropsT> = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     return (
       <div
         className={cn('ButtonForward', props.className)}
@@ -21,5 +21,5 @@ export const ButtonForward: React.FC<PropsT> = observer(
         <ForwardArrowIcon />
       </div>
     );
-  })
+  }, DefaultProps)
 );

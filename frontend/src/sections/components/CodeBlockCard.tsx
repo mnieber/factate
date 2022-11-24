@@ -11,10 +11,10 @@ export type PropsT = {
   codeBlock: CodeBlockT;
 };
 
-type DefaultPropsT = {};
+const DefaultProps = {};
 
 export const CodeBlockCard: React.FC<PropsT> = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     return (
       <div
         className={cn('CodeBlockCard', 'flex flex-col mb-2', props.className)}
@@ -25,5 +25,5 @@ export const CodeBlockCard: React.FC<PropsT> = observer(
         />
       </div>
     );
-  })
+  }, DefaultProps)
 );

@@ -1,7 +1,7 @@
 export type CodeBlockT = {
-  id: string;
-  filename: string;
   code: string;
+  filename: string;
+  id: string;
 };
 
 export type CodeBlockByIdT = { [id: string]: CodeBlockT };

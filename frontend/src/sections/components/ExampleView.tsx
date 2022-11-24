@@ -1,7 +1,7 @@
 import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { withDefaultProps } from 'react-default-props-context';
+import { stub, withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { createTitle } from 'src/api/types/SectionT';
@@ -15,12 +15,12 @@ type PropsT = {
   className?: any;
 };
 
-type DefaultPropsT = {
-  pagesRS: string;
+const DefaultProps = {
+  pagesRS: stub as string,
 };
 
 export const ExampleView = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
@@ -38,5 +38,5 @@ export const ExampleView = observer(
         <FactCard className="mt-2" example={props.example} />
       </div>
     );
-  })
+  }, DefaultProps)
 );

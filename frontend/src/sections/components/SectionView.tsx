@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { withDefaultProps } from 'react-default-props-context';
+import { stub, withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
 import { createTitle, SectionT } from 'src/api/types/SectionT';
 import { cn } from 'src/utils/classnames';
@@ -10,12 +10,12 @@ type PropsT = {
   className?: any;
 };
 
-type DefaultPropsT = {
-  pagesRS: string;
+const DefaultProps = {
+  pagesRS: stub as string,
 };
 
 export const SectionView = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
@@ -27,5 +27,5 @@ export const SectionView = observer(
         />
       </div>
     );
-  })
+  }, DefaultProps)
 );

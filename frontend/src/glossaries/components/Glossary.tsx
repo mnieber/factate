@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
-import { withDefaultProps } from 'react-default-props-context';
+import { stub, withDefaultProps } from 'react-default-props-context';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { TermT } from 'src/api/types/TermT';
 import { GlossaryItem } from 'src/glossaries/components/GlossaryItem';
@@ -12,12 +12,12 @@ type PropsT = {
   glossary: GlossaryT;
 };
 
-type DefaultPropsT = {
-  pagesRS: string;
+const DefaultProps = {
+  pagesRS: stub as string,
 };
 
 export const Glossary = observer(
-  withDefaultProps<PropsT, DefaultPropsT>((props: PropsT & DefaultPropsT) => {
+  withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
     if (resourceView) return resourceView;
 
@@ -40,5 +40,5 @@ export const Glossary = observer(
         {itemDivs.length === 0 && noItems}
       </div>
     );
-  })
+  }, DefaultProps)
 );
