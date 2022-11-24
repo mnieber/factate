@@ -6,13 +6,13 @@ import { ExampleT } from 'src/api/types/ExampleT';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
 import { SectionT } from 'src/api/types/SectionT';
-import { ExampleView } from 'src/examples/components';
-import { SectionView } from 'src/examples/components/SectionView';
 import 'src/frames/styles/uikit.scss';
 import { areRectanglesIntersecting } from 'src/frames/utils/areRectanglesIntersecting';
 import { findNextElm } from 'src/frames/utils/handleEnterAsTabToNext';
 import { scrollToNextHeading } from 'src/frames/utils/scrollToNextHeading';
 import { Glossary } from 'src/glossaries/components/Glossary';
+import { ExampleView } from 'src/sections/components';
+import { SectionView } from 'src/sections/components/SectionView';
 import { cn } from 'src/utils/classnames';
 import UIkit from 'uikit';
 import './PageView.scss';
@@ -65,10 +65,6 @@ export const PageView = observer(
       );
     });
 
-    console.log(
-      '🚀 ~ file: PageView.tsx ~ line 68 ~ props.isMobile',
-      props.isMobile
-    );
     const menu = props.isMobile ? (
       <button data-uk-toggle="target: #PageView__RightPanel" type="button">
         Menu
@@ -153,32 +149,3 @@ export const PageView = observer(
     );
   })
 );
-
-type FooT = {
-  foo: number;
-  bar: number;
-};
-
-const checkFooT = (x: FooT) => x;
-
-const Foo = (props: FooT) => {
-  return <div>{props.foo}</div>;
-};
-
-export const Bar = (props: PropsT & DefaultPropsT) => {
-  // const patch: DefaultPropsT = {
-  //   page: props.page,
-  //   glossaries: props.glossaries,
-  //   isMobile: props.isMobile,
-  //   foo: 123,
-  // } as DefaultPropsT;
-
-  return (
-    <Foo
-      {...checkFooT({
-        foo: 123,
-        bar: 456,
-      })}
-    />
-  );
-};
