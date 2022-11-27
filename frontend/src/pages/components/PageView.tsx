@@ -65,7 +65,7 @@ export const PageView = observer(
       );
     });
 
-    const menu = props.isMobile ? (
+    const toggleMenuButton = props.isMobile ? (
       <button data-uk-toggle="target: #PageView__RightPanel" type="button">
         Menu
       </button>
@@ -98,7 +98,7 @@ export const PageView = observer(
             props.className
           )}
         >
-          {menu}
+          {toggleMenuButton}
           <div className={cn('PageView__Body', 'flex flex-row', 'w-full grow')}>
             <div
               ref={ref}
