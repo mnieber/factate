@@ -6,14 +6,12 @@ import './App.scss';
 
 export const App = () => {
   return (
-    <div
-      className={cn('App', 'flex flex-col items-center', 'mx-auto xl:w-4/5')}
-    >
-      <FrameStateProvider>
-        <PageStateProvider>
+    <FrameStateProvider>
+      <PageStateProvider>
+        <div className={cn('App', 'flex flex-col', 'mx-auto xl:w-4/5')}>
           <UrlRouter />
-        </PageStateProvider>
-      </FrameStateProvider>
-    </div>
+        </div>
+      </PageStateProvider>
+    </FrameStateProvider>
   );
 };

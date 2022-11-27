@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import * as R from 'ramda';
 import React from 'react';
 import {
   NestedDefaultPropsContext,
@@ -29,24 +28,29 @@ export const PageStateProvider = observer(
         });
     }, [state]);
 
-    const getDefaultProps = () => {
-      return R.mergeAll([
-        {
-          pages: () => state.pages.data.pages,
-          pagesHighlight: () => state.pages.highlight,
-          page: () => state.pages.highlight.item,
-          pagesRS: () => (state.pages.data.pages.length ? 'loaded' : 'loading'),
+    const getDefaultPropsContext = () => {
+      const result = { defaultProps: {} };
+
+      result.defaultProps = {
+        ...result.defaultProps,
+        pages: () => state.pages.data.pages,
+        pagesHighlight: () => state.pages.highlight,
+        page: () => state.pages.highlight.item,
+        pagesRS: () => (state.pages.data.pages.length ? 'loaded' : 'loading'),
+      };
+
+      result.defaultProps = {
+        ...result.defaultProps,
+        glossaries: () => {
+          return state.pages.data.glossaries;
         },
-        {
-          glossaries: () => {
-            return state.pages.data.glossaries;
-          },
-        },
-      ]);
+      };
+
+      return result;
     };
 
     return (
-      <NestedDefaultPropsContext value={getDefaultProps()}>
+      <NestedDefaultPropsContext value={getDefaultPropsContext()}>
         {props.children}
       </NestedDefaultPropsContext>
     );
