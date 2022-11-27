@@ -2,17 +2,14 @@ import jQuery from 'jquery';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { stub, withDefaultProps } from 'react-default-props-context';
-import { ExampleT } from 'src/api/types/ExampleT';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
-import { SectionT } from 'src/api/types/SectionT';
 import 'src/frames/styles/uikit.scss';
 import { areRectanglesIntersecting } from 'src/frames/utils/areRectanglesIntersecting';
 import { findNextElm } from 'src/frames/utils/handleEnterAsTabToNext';
 import { scrollToNextHeading } from 'src/frames/utils/scrollToNextHeading';
 import { GlossariesPanel } from 'src/glossaries/components';
-import { ExampleView } from 'src/sections/components';
-import { SectionView } from 'src/sections/components/SectionView';
+import { SectionsPanel } from 'src/sections/components/SectionsPanel';
 import { cn } from 'src/utils/classnames';
 import UIkit from 'uikit';
 import './PageView.scss';
@@ -44,23 +41,8 @@ export const PageView = observer(
 
     if (!props.page) return null;
 
-    const sectionViews = props.page.sections.map((section: SectionT) => {
-      if (section.type === 'example') {
-        return (
-          <ExampleView
-            className={cn('p-4')}
-            key={section.id}
-            example={section as ExampleT}
-          />
-        );
-      }
-      return (
-        <SectionView className={cn('p-4')} key={section.id} section={section} />
-      );
-    });
-
     const toggleMenuButton = props.isMobile ? (
-      <button data-uk-toggle="target: #PageView__RightPanel" type="button">
+      <button data-uk-toggle="target: #GlossariesPanel" type="button">
         Menu
       </button>
     ) : null;
@@ -111,13 +93,7 @@ export const PageView = observer(
                 }
               }}
             >
-              <div className={cn('PageView__Sections')}>
-                {sectionViews}
-                <div className={cn('PageView__Credits', 'px-4')}>
-                  Documentation created with{' '}
-                  <a href="https://github.com/mnieber/factate">factate</a>
-                </div>
-              </div>
+              <SectionsPanel />
             </div>
             <GlossariesPanel />
           </div>
