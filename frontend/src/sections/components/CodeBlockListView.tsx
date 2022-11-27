@@ -5,7 +5,7 @@ import { stub, withDefaultProps } from 'react-default-props-context';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.scss';
 import { CodeBlockT } from 'src/api/types/CodeBlockT';
-import { CodeBlockCard } from 'src/sections/components';
+import { CodeBlockCard } from 'src/sections/components/CodeBlockCard';
 import { cn } from 'src/utils/classnames';
 import './CodeBlockListView.scss';
 
