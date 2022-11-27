@@ -10,7 +10,7 @@ import 'src/frames/styles/uikit.scss';
 import { areRectanglesIntersecting } from 'src/frames/utils/areRectanglesIntersecting';
 import { findNextElm } from 'src/frames/utils/handleEnterAsTabToNext';
 import { scrollToNextHeading } from 'src/frames/utils/scrollToNextHeading';
-import { Glossary } from 'src/glossaries/components/Glossary';
+import { GlossariesPanel } from 'src/glossaries/components';
 import { ExampleView } from 'src/sections/components';
 import { SectionView } from 'src/sections/components/SectionView';
 import { cn } from 'src/utils/classnames';
@@ -59,34 +59,11 @@ export const PageView = observer(
       );
     });
 
-    const glossaryViews = props.glossaries.map((glossary: GlossaryT) => {
-      return (
-        <Glossary className={cn()} key={glossary.id} glossary={glossary} />
-      );
-    });
-
     const toggleMenuButton = props.isMobile ? (
       <button data-uk-toggle="target: #PageView__RightPanel" type="button">
         Menu
       </button>
     ) : null;
-
-    const rightPanel = props.isMobile ? (
-      <div
-        id="PageView__RightPanel"
-        ref={(elm: any) => {
-          UIkit.offcanvas(elm, { flip: true });
-        }}
-      >
-        <div className={cn('uk-offcanvas-bar', 'mt-[-16px]')}>
-          {glossaryViews}
-        </div>
-      </div>
-    ) : (
-      <div className={cn('PageView__RightPanel', 'flex flex-col')}>
-        {glossaryViews}
-      </div>
-    );
 
     return (
       UIkit && (
@@ -142,7 +119,7 @@ export const PageView = observer(
                 </div>
               </div>
             </div>
-            {rightPanel}
+            <GlossariesPanel />
           </div>
         </div>
       )
