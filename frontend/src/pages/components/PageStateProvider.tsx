@@ -17,7 +17,7 @@ export const PageStateProvider = observer(
     const [state] = React.useState(() => new PageState({}));
 
     React.useEffect(() => {
-      getPages()
+      getPages({})
         .then((pages: ObjT) => {
           state.setPages(pages.pages);
           state.setGlossaries(pages.glossaries);

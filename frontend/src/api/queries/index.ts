@@ -1,1 +1,1 @@
-export {} from './useGetPages';
+export { useGetPages } from './useGetPages';
