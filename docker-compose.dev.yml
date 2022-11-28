@@ -5,10 +5,10 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+    env_file:
+      - ./backend/.env/dev.injected.env
     command: sleep infinity
     image: factate_backend_dev
-    ports:
-      - 8000:8000
     volumes:
       - ./backend:/app/src
       - bundle:/app/bundle
@@ -18,6 +18,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     command: sleep infinity
+    env_file:
+      - ./frontend/.env/dev.injected.env
     environment:
       - CHOKIDAR_USEPOLLING=true
     image: factate_frontend_dev

@@ -1,9 +1,9 @@
 export type SectionT = {
-  type: 'example' | 'standard';
   id: string;
-  title: string;
   level: number;
   text: string;
+  title: string;
+  type: 'example' | 'standard';
 };
 
 export type SectionByIdT = { [id: string]: SectionT };
