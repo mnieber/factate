@@ -6,11 +6,11 @@ import { Highlight } from 'skandha-facets/Highlight';
 import { registerCtr } from 'skandha-mobx';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
-import { initPages, PagesData } from 'src/pages/PageState/initPages';
+import { initPages, PagesData } from 'src/pages/PagesState/initPages';
 
 export type PropsT = {};
 
-export class PageState {
+export class PagesState {
   pages = {
     data: new PagesData(),
     highlight: new Highlight(),
@@ -45,7 +45,7 @@ export class PageState {
   constructor(props: PropsT) {
     registerCtr({
       ctr: this.pages,
-      options: { name: 'PageState.Pages' },
+      options: { name: 'PagesState.Pages' },
       initCtr: () => {
         initPages(this, props);
         this._pagesMapData(props);

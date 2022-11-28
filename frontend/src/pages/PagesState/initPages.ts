@@ -5,10 +5,10 @@ import {
 import { data, input } from 'skandha';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageByIdT, PageT } from 'src/api/types/PageT';
-import { PageState, PropsT } from 'src/pages/PageState';
+import { PagesState, PropsT } from 'src/pages/PagesState';
 import { listToItemById } from 'src/utils/ids';
 
-export const initPages = (state: PageState, props: PropsT) => {
+export const initPages = (state: PagesState, props: PropsT) => {
   addCleanUpFunctionToCtr(state, () => cleanUpCtr(state.pages));
 };
 

@@ -5,16 +5,16 @@ import {
   withDefaultProps,
 } from 'react-default-props-context';
 import { getPages } from 'src/api/queries/useGetPages';
-import { PageState } from 'src/pages/PageState';
+import { PagesState } from 'src/pages/PagesState';
 import { ObjT } from 'src/utils/types';
 
 type PropsT = React.PropsWithChildren<{}>;
 
 const DefaultProps = {};
 
-export const PageStateProvider = observer(
+export const PagesStateProvider = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
-    const [state] = React.useState(() => new PageState({}));
+    const [state] = React.useState(() => new PagesState({}));
 
     React.useEffect(() => {
       getPages({})
