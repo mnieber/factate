@@ -15,7 +15,7 @@ export type PropsT = {
 
 const DefaultProps = {};
 
-export const FactCard: React.FC<PropsT> = observer(
+export const FactCard = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const [factIdx, setFactIdx] = React.useState(0);
     if (!props.example.facts.length) return null;
