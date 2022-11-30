@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { stub, withDefaultProps } from 'react-default-props-context';
 import { ExampleT } from 'src/api/types/ExampleT';
-import { PageT } from 'src/api/types/PageT';
 import { SectionT } from 'src/api/types/SectionT';
+import { defaultProps as dps, withDefaultProps } from 'src/app/defaultProps';
 import { ExampleView } from 'src/sections/components/ExampleView';
 import { SectionView } from 'src/sections/components/SectionView';
 import { cn } from 'src/utils/classnames';
@@ -13,7 +12,7 @@ type PropsT = {
 };
 
 const DefaultProps = {
-  page: stub as PageT,
+  ...dps.page,
 };
 
 export const SectionsPanel = observer(
