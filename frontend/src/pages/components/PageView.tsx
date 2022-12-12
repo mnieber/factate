@@ -55,7 +55,9 @@ export const PageView = observer(
           {toggleMenuButton}
           <div className={cn('PageView__Body', 'flex flex-row', 'w-full grow')}>
             <div
-              ref={ref}
+              ref={(x: any) => {
+                ref.current = x;
+              }}
               tabIndex={123}
               className={cn('PageView__LeftPanel', 'grow')}
               onScroll={onScrollFocusFactCard}

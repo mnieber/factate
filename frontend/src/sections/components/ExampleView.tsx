@@ -5,8 +5,8 @@ import { stub, withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { createTitle } from 'src/api/types/SectionT';
+import { CodeBlockListView } from 'src/codeBlocks/components/CodeBlockListView';
 import { FactCard } from 'src/facts/components';
-import { CodeBlockListView } from 'src/sections/components/CodeBlockListView';
 import { cn } from 'src/utils/classnames';
 import './ExampleView.scss';
 
