@@ -1,36 +1,25 @@
-import { action, makeObservable } from 'mobx';
 import { cleanUpCtr } from 'react-default-props-context';
 import * as Skandha from 'skandha';
-import { mapDataToProps } from 'skandha';
+import { mapDataToProps, pmap } from 'skandha';
 import { Highlight } from 'skandha-facets/Highlight';
 import { registerCtr } from 'skandha-mobx';
-import { GlossaryT } from 'src/api/types/GlossaryT';
 import { PageT } from 'src/api/types/PageT';
-import { initPages, PagesData } from 'src/pages/PagesState/initPages';
+import { GlossariesData, initGlossaries } from './glossaries';
+import { initPages, PagesData } from './pages';
 
 export type PropsT = {};
 
 export class PagesState {
-  pages = {
-    data: new PagesData(),
-    highlight: new Highlight(),
+  glossaries = {
+    data: new GlossariesData(),
   };
 
-  @action setPages(pages: PageT[]) {
-    this.pages.data.pages = pages;
-  }
+  pages = {
+    data: new PagesData(),
+    highlight: new Highlight<PageT>(),
+  };
 
-  @action setGlossaries(glossaries: GlossaryT[]) {
-    this.pages.data.glossaries = glossaries;
-  }
-
-  getSummary() {
-    return Skandha.getCtrState(this);
-  }
-
-  destroy() {
-    cleanUpCtr(this);
-  }
+  _glossariesMapData(props: PropsT) {}
 
   _pagesMapData(props: PropsT) {
     const getPageById = (x: string | undefined) =>
@@ -42,7 +31,27 @@ export class PagesState {
     ]);
   }
 
+  getSummary() {
+    return {
+      glossaries: Skandha.getCtrState(this.glossaries),
+      pages: Skandha.getCtrState(this.pages),
+    };
+  }
+
+  destroy() {
+    cleanUpCtr(this);
+  }
+
   constructor(props: PropsT) {
+    registerCtr({
+      ctr: this.glossaries,
+      options: { name: 'PagesState.Glossaries' },
+      initCtr: () => {
+        initGlossaries(this, props);
+        this._glossariesMapData(props);
+      },
+    });
+
     registerCtr({
       ctr: this.pages,
       options: { name: 'PagesState.Pages' },
@@ -51,7 +60,5 @@ export class PagesState {
         this._pagesMapData(props);
       },
     });
-
-    makeObservable(this);
   }
 }

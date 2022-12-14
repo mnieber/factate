@@ -5,7 +5,7 @@ import { stub, withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
 import { ExampleT } from 'src/api/types/ExampleT';
 import { createTitle } from 'src/api/types/SectionT';
-import { CodeBlockListView } from 'src/codeBlocks/components/CodeBlockListView';
+import { CodeBlockTabView } from 'src/codeBlocks/components/CodeBlockTabView';
 import { FactCard } from 'src/facts/components';
 import { cn } from 'src/utils/classnames';
 import './ExampleView.scss';
@@ -34,7 +34,7 @@ export const ExampleView = observer(
           className={cn('ExampleView__Text', 'Markdown')}
           children={createTitle(props.example) + props.example.text}
         />
-        <CodeBlockListView codeBlocks={props.example.codeBlocks} />
+        <CodeBlockTabView codeBlocks={props.example.codeBlocks} />
         <FactCard className="mt-2" example={props.example} />
       </div>
     );
