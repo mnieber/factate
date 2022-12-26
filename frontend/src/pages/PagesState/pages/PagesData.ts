@@ -1,13 +1,13 @@
-import { data, input } from 'skandha';
+import { input, output } from 'skandha';
 import { PageByIdT, PageT } from 'src/api/types/PageT';
 import { listToItemById } from 'src/utils/ids';
 
 export class PagesData {
+  static className = () => 'PagesData';
+
   @input pages: Array<PageT> = [];
 
-  @data get pageById(): PageByIdT {
+  @output get pageById(): PageByIdT {
     return listToItemById(this.pages);
   }
-
-  static className = () => 'Data';
 }

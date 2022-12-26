@@ -1,16 +1,9 @@
-.CodeBlockTabView {
-    .react-tabs__tab-list {
-        margin-bottom: 0px !important;
-    }
-}
-
 .CodeBlockTabView__Body {
     display: grid;
     grid-template-areas:
         "content";
 
-    .CodeBlockCard {
+    .CodeBlockTabView__Tab {
         grid-area: content;
     }
 }
-

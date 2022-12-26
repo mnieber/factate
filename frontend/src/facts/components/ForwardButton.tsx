@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { withDefaultProps } from 'react-default-props-context';
-import { BackwardArrowIcon } from 'src/frames/icons/BackwardArrowIcon';
+import { ForwardArrowIcon } from 'src/frames/icons/ForwardArrowIcon';
 import { cn } from 'src/utils/classnames';
 
 type PropsT = {
@@ -11,14 +11,14 @@ type PropsT = {
 
 const DefaultProps = {};
 
-export const ButtonBack: React.FC<PropsT> = observer(
+export const ForwardButton: React.FC<PropsT> = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
     return (
       <div
-        className={cn('ButtonBack', props.className)}
+        className={cn('ButtonForward', props.className)}
         onClick={props.onClick as any}
       >
-        <BackwardArrowIcon />
+        <ForwardArrowIcon />
       </div>
     );
   }, DefaultProps)

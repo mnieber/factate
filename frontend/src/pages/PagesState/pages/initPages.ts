@@ -5,5 +5,6 @@ import {
 import { PagesState, PropsT } from 'src/pages/PagesState';
 
 export const initPages = (state: PagesState, props: PropsT) => {
-  addCleanUpFunctionToCtr(state, () => cleanUpCtr(state.pages));
+  const ctr = state.pages;
+  addCleanUpFunctionToCtr(state, () => cleanUpCtr(ctr));
 };

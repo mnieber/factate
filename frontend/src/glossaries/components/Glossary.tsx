@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { stub, withDefaultProps } from 'src/app/defaultProps';
 import { GlossaryT } from 'src/api/types/GlossaryT';
 import { TermT } from 'src/api/types/TermT';
+import { withDefaultProps } from 'src/app/defaultProps';
 import { GlossaryItem } from 'src/glossaries/components/GlossaryItem';
 import { cn } from 'src/utils/classnames';
 import './Glossary.scss';
@@ -11,15 +11,10 @@ type PropsT = {
   glossary: GlossaryT;
 };
 
-const DefaultProps = {
-  pagesRS: stub as string,
-};
+const DefaultProps = {};
 
 export const Glossary = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
-    const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
-    if (resourceView) return resourceView;
-
     const glossaryItems = props.glossary.terms.map((term: TermT) => {
       return <GlossaryItem key={term.id} term={term} />;
     });

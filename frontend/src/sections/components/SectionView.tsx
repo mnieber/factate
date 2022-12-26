@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { stub, withDefaultProps } from 'react-default-props-context';
+import { withDefaultProps } from 'react-default-props-context';
 import ReactMarkdown from 'react-markdown';
 import { createTitle, SectionT } from 'src/api/types/SectionT';
 import { cn } from 'src/utils/classnames';
@@ -10,15 +10,10 @@ type PropsT = {
   className?: any;
 };
 
-const DefaultProps = {
-  pagesRS: stub as string,
-};
+const DefaultProps = {};
 
 export const SectionView = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
-    const resourceView = props.pagesRS === 'loading' ? <div /> : undefined;
-    if (resourceView) return resourceView;
-
     return (
       <div className={cn('SectionView', 'flex flex-col', props.className)}>
         <ReactMarkdown

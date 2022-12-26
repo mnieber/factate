@@ -6,9 +6,8 @@ export class GlossariesData {
   static className = () => 'GlossariesData';
 
   @input glossaries: Array<GlossaryT> = [];
-  @output glossariesDisplay: Array<GlossaryT> = [];
 
   @output get glossaryById(): GlossaryByIdT {
-    return listToItemById(this.glossariesDisplay);
+    return listToItemById(this.glossaries);
   }
 }
