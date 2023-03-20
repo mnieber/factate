@@ -11,8 +11,8 @@ services:
     image: factate_backend_dev
     volumes:
       - ./backend:/app/src
-      - bundle:/app/bundle
       - backend_venv:/app/env
+      - bundle:/app/bundle
   frontend:
     build:
       context: ./frontend

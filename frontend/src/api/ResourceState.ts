@@ -1,60 +1,32 @@
-import { action, makeObservable, observable } from 'mobx';
-import { EndpointData } from 'src/api/EndpointData';
+import * as R from 'ramda';
 
 export const symbolRS = Symbol('ResourceState');
-export const loadingList = Object.freeze([]);
-export const loadingObj = Object.freeze({});
 
-export class ResourceState {
-  @observable _isUpdating: boolean = false;
+export type ResourceStateT = undefined | 'loading' | 'updating' | 'ready';
 
-  @action setIsUpdating(isUpdating: boolean) {
-    this._isUpdating = isUpdating;
-  }
+export const isUpdating = (resource: any) => getState(resource) === 'updating';
+export const isLoading = (resource: any) =>
+  resource === null || getState(resource) === 'loading';
+export const isReady = (resource: any) => getState(resource) === 'ready';
+export const isUndefined = (resource: any) =>
+  resource === undefined || getState(resource) === undefined;
 
-  isUpdating() {
-    return this._isUpdating;
-  }
-
-  constructor() {
-    makeObservable(this);
-  }
-}
-
-export const isUpdating = (x: any) => getRS(x).isUpdating();
-
-export const setToUpdating = (x: any) => getRS(x).setIsUpdating(true);
-
-export const setToIdle = (x: any) => getRS(x).setIsUpdating(false);
-
-export const getRS = (x: any) => x[symbolRS];
-
-export const initRS = (x: any) => {
-  x[symbolRS] = x[symbolRS] ?? new ResourceState();
+export const setState = (resource: any, state: ResourceStateT) => {
+  resource[symbolRS] = state;
 };
 
-export function isLoading(resource: any) {
-  if (resource instanceof EndpointData) {
-    return resource.status === 'idle' || resource.status === 'loading';
+export const setToUpdating = (resource: any) => setState(resource, 'updating');
+export const setToLoading = (resource: any) => setState(resource, 'loading');
+export const setToReady = (resource: any) => setState(resource, 'ready');
+export const setToUndefined = (resource: any) => setState(resource, undefined);
+
+export const getState = (resource: any): ResourceStateT | undefined => {
+  return resource ? resource[symbolRS] ?? undefined : undefined;
+};
+
+export const initRS = (resource: any, state?: ResourceStateT) => {
+  if (resource && R.isNil(resource[symbolRS])) {
+    resource[symbolRS] = state ?? undefined;
   }
-  return (
-    resource === null || resource === loadingList || resource === loadingObj
-  );
-}
-
-export function isLoaded(resource: any) {
-  return !isLoading(resource);
-}
-
-export const maybe =
-  (parentResource: any, defaultValue: any = null) =>
-  (resource: any) =>
-    isLoaded(parentResource) ? resource : _defaultValue(defaultValue);
-
-const _defaultValue = (value: any) => {
-  return Array.isArray(value)
-    ? loadingList
-    : value === null
-    ? null
-    : loadingObj;
+  return resource;
 };
